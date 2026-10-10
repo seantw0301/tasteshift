@@ -15,6 +15,13 @@ ASSUMPTIONS = {
     "attendance_cv": 0.15,       # shared crowd-size shock
     "truth_tilt_beta": 1.4,      # hidden environment's tilt (differs from the planner's on purpose)
     "truth_taste_noise": 0.25,   # hidden per-SKU taste noise the planner cannot see
+    "rain_attendance_factor": 0.7,  # crowd kept when it rains
+}
+# Risk postures: lam penalises downside (mean minus worst-10% profit), gamma penalises lost sales.
+RISK = {
+    "conservative": {"lam": 0.5, "gamma": 0.0},
+    "balanced": {"lam": 0.0, "gamma": 0.0},
+    "aggressive": {"lam": 0.0, "gamma": 0.6},
 }
 
 
@@ -53,14 +60,37 @@ def scenarios(mean: np.ndarray, seed: int) -> np.ndarray:
     return mean * crowd * noise
 
 
+def apply_capacity(demand: np.ndarray, per_hour: float, profile: List[float]) -> np.ndarray:
+    """Cap servable demand hour by hour (grill / prep line). Lost peak-hour demand is not recoverable."""
+    total = demand.sum(axis=1, keepdims=True)
+    served = sum(np.minimum(total * w, per_hour) for w in profile)
+    return demand * np.divide(served, total, out=np.ones_like(total), where=total > 0)
+
+
 def sku_profit(s: SKU, q: int, d: np.ndarray) -> float:
     sold = np.minimum(d, q)
     return float(np.mean(s.price * sold + s.salvage_value * (q - sold) - s.unit_cost * q))
 
 
-def optimize(skus: List[SKU], demand: np.ndarray, budget: float, blocked: Dict[str, str]) -> Dict[str, int]:
-    """Greedy marginal-profit-per-dollar under budget, MOQ (0 or >= MOQ), lot size and max stock."""
+def sku_objective(s: SKU, q: int, d: np.ndarray, lam: float, gamma: float) -> float:
+    """Expected profit adjusted for risk posture. With lam = gamma = 0 this is plain expected profit."""
+    sold = np.minimum(d, q)
+    profit = s.price * sold + s.salvage_value * (q - sold) - s.unit_cost * q
+    mean = float(profit.mean())
+    if lam:
+        tail = np.sort(profit)[: max(1, len(profit) // 10)].mean()
+        mean -= lam * (mean - float(tail))
+    if gamma:
+        mean -= gamma * (s.price - s.unit_cost) * float(np.mean(np.maximum(d - q, 0)))
+    return mean
+
+
+def optimize(skus: List[SKU], demand: np.ndarray, budget: float, blocked: Dict[str, str],
+             risk: str = "balanced") -> Dict[str, int]:
+    """Greedy marginal gain per dollar under budget, MOQ (0 or >= MOQ), lot size and max stock."""
+    r = RISK[risk]
     q = {s.id: 0 for s in skus}
+    cur = {s.id: sku_objective(s, 0, demand[:, i], **r) for i, s in enumerate(skus)}
     spent = 0.0
     while True:
         best = None
@@ -72,12 +102,14 @@ def optimize(skus: List[SKU], demand: np.ndarray, budget: float, blocked: Dict[s
             cost = step * s.unit_cost
             if nq > s.max_stock or spent + cost > budget:
                 continue
-            gain = sku_profit(s, nq, demand[:, i]) - sku_profit(s, q[s.id], demand[:, i])
+            val = sku_objective(s, nq, demand[:, i], **r)
+            gain = val - cur[s.id]
             if gain > 0 and (best is None or gain / cost > best[0]):
-                best = (gain / cost, s.id, step, cost)
+                best = (gain / cost, s.id, step, cost, val)
         if best is None:
             return q
         q[best[1]] += best[2]
+        cur[best[1]] = best[4]
         spent += best[3]
 
 

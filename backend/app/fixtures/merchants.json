@@ -1,0 +1,808 @@
+[
+ {
+  "id": "merchant_souvenir_01",
+  "name": "Lantern Lane Souvenirs",
+  "segment": "souvenir",
+  "currency": "TWD",
+  "budget": 20000,
+  "licenses_held": [
+   "anime_ip_a"
+  ],
+  "booth_reach": 0.08,
+  "conversion": 0.3,
+  "units_per_buyer": 1.5,
+  "skus": [
+   {
+    "id": "SKU01",
+    "name": "Acrylic character stand",
+    "price": 250,
+    "unit_cost": 90,
+    "salvage_value": 20,
+    "moq": 20,
+    "lot_size": 10,
+    "max_stock": 120,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "anime",
+     "collectibles"
+    ],
+    "requires_license": "anime_ip_a",
+    "rain_factor": 1.0
+   },
+   {
+    "id": "SKU02",
+    "name": "Light-stick strap",
+    "price": 180,
+    "unit_cost": 60,
+    "salvage_value": 10,
+    "moq": 30,
+    "lot_size": 10,
+    "max_stock": 150,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "music_live",
+     "jpop"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.9
+   },
+   {
+    "id": "SKU03",
+    "name": "Cosplay pin set",
+    "price": 120,
+    "unit_cost": 35,
+    "salvage_value": 5,
+    "moq": 30,
+    "lot_size": 10,
+    "max_stock": 200,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "cosplay",
+     "anime"
+    ],
+    "requires_license": null,
+    "rain_factor": 1.0
+   },
+   {
+    "id": "SKU04",
+    "name": "Blind-box keychain",
+    "price": 150,
+    "unit_cost": 55,
+    "salvage_value": 15,
+    "moq": 40,
+    "lot_size": 20,
+    "max_stock": 240,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "collectibles",
+     "gaming",
+     "kawaii"
+    ],
+    "requires_license": null,
+    "rain_factor": 1.0
+   },
+   {
+    "id": "SKU05",
+    "name": "Band-style tee",
+    "price": 450,
+    "unit_cost": 180,
+    "salvage_value": 60,
+    "moq": 12,
+    "lot_size": 6,
+    "max_stock": 60,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "streetwear",
+     "music_live"
+    ],
+    "requires_license": null,
+    "rain_factor": 1.0
+   },
+   {
+    "id": "SKU06",
+    "name": "Plush animal",
+    "price": 320,
+    "unit_cost": 130,
+    "salvage_value": 50,
+    "moq": 12,
+    "lot_size": 6,
+    "max_stock": 80,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "plush",
+     "kids",
+     "kawaii"
+    ],
+    "requires_license": null,
+    "rain_factor": 1.0
+   },
+   {
+    "id": "SKU07",
+    "name": "DIY craft kit",
+    "price": 200,
+    "unit_cost": 70,
+    "salvage_value": 20,
+    "moq": 20,
+    "lot_size": 10,
+    "max_stock": 120,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "crafts",
+     "kids",
+     "family"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.8
+   },
+   {
+    "id": "SKU08",
+    "name": "Kids' sticker book",
+    "price": 100,
+    "unit_cost": 30,
+    "salvage_value": 8,
+    "moq": 30,
+    "lot_size": 10,
+    "max_stock": 200,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "picture_books",
+     "kids",
+     "stationery"
+    ],
+    "requires_license": null,
+    "rain_factor": 1.0
+   },
+   {
+    "id": "SKU09",
+    "name": "Eco tote bag",
+    "price": 220,
+    "unit_cost": 80,
+    "salvage_value": 30,
+    "moq": 20,
+    "lot_size": 10,
+    "max_stock": 100,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "eco",
+     "outdoor"
+    ],
+    "requires_license": null,
+    "rain_factor": 1.0
+   },
+   {
+    "id": "SKU10",
+    "name": "Local postcard set",
+    "price": 80,
+    "unit_cost": 20,
+    "salvage_value": 5,
+    "moq": 30,
+    "lot_size": 10,
+    "max_stock": 200,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "local_culture",
+     "stationery"
+    ],
+    "requires_license": null,
+    "rain_factor": 1.0
+   },
+   {
+    "id": "SKU11",
+    "name": "Bubble wand toy",
+    "price": 90,
+    "unit_cost": 28,
+    "salvage_value": 5,
+    "moq": 30,
+    "lot_size": 10,
+    "max_stock": 200,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "outdoor",
+     "kids",
+     "family"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.4
+   },
+   {
+    "id": "SKU12",
+    "name": "Mascot face towel",
+    "price": 280,
+    "unit_cost": 110,
+    "salvage_value": 30,
+    "moq": 20,
+    "lot_size": 10,
+    "max_stock": 80,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "anime",
+     "kawaii"
+    ],
+    "requires_license": "mascot_ip_b",
+    "rain_factor": 1.3
+   }
+  ]
+ },
+ {
+  "id": "merchant_juice_01",
+  "name": "Sunny Press Juice Bar",
+  "segment": "juice",
+  "currency": "TWD",
+  "budget": 12000,
+  "licenses_held": [],
+  "booth_reach": 0.1,
+  "conversion": 0.35,
+  "units_per_buyer": 1.2,
+  "capacity": {
+   "units_per_hour": 55,
+   "hours": 8,
+   "hourly_profile": [
+    0.06,
+    0.1,
+    0.16,
+    0.18,
+    0.14,
+    0.12,
+    0.14,
+    0.1
+   ],
+   "label": "blender and prep line"
+  },
+  "skus": [
+   {
+    "id": "J01",
+    "name": "Mango smoothie",
+    "price": 90,
+    "unit_cost": 30,
+    "salvage_value": 0,
+    "moq": 10,
+    "lot_size": 10,
+    "max_stock": 300,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "tropical_fruit",
+     "sweet"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.5,
+    "shelf_life_days": null
+   },
+   {
+    "id": "J02",
+    "name": "Lemon green tea",
+    "price": 60,
+    "unit_cost": 15,
+    "salvage_value": 0,
+    "moq": 10,
+    "lot_size": 10,
+    "max_stock": 300,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "tea",
+     "refreshing"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.6,
+    "shelf_life_days": null
+   },
+   {
+    "id": "J03",
+    "name": "Strawberry milk",
+    "price": 85,
+    "unit_cost": 32,
+    "salvage_value": 0,
+    "moq": 10,
+    "lot_size": 10,
+    "max_stock": 300,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "sweet",
+     "kids",
+     "kawaii"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.7,
+    "shelf_life_days": null
+   },
+   {
+    "id": "J04",
+    "name": "Watermelon juice",
+    "price": 70,
+    "unit_cost": 20,
+    "salvage_value": 0,
+    "moq": 10,
+    "lot_size": 10,
+    "max_stock": 300,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "refreshing",
+     "family"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.5,
+    "shelf_life_days": null
+   },
+   {
+    "id": "J05",
+    "name": "Matcha latte",
+    "price": 95,
+    "unit_cost": 35,
+    "salvage_value": 0,
+    "moq": 10,
+    "lot_size": 10,
+    "max_stock": 300,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "matcha",
+     "kawaii"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.9,
+    "shelf_life_days": null
+   },
+   {
+    "id": "J06",
+    "name": "Passionfruit soda",
+    "price": 75,
+    "unit_cost": 22,
+    "salvage_value": 0,
+    "moq": 10,
+    "lot_size": 10,
+    "max_stock": 300,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "tropical_fruit",
+     "refreshing"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.6,
+    "shelf_life_days": null
+   }
+  ],
+  "recipes": {
+   "J01": [
+    {
+     "ingredient": "mango",
+     "unit": "kg",
+     "qty_per_unit": 0.18,
+     "waste_rate": 0.12
+    },
+    {
+     "ingredient": "ice",
+     "unit": "kg",
+     "qty_per_unit": 0.15,
+     "waste_rate": 0.2
+    },
+    {
+     "ingredient": "cup+lid",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.03
+    }
+   ],
+   "J02": [
+    {
+     "ingredient": "lemon",
+     "unit": "kg",
+     "qty_per_unit": 0.05,
+     "waste_rate": 0.1
+    },
+    {
+     "ingredient": "green tea leaves",
+     "unit": "kg",
+     "qty_per_unit": 0.006,
+     "waste_rate": 0.05
+    },
+    {
+     "ingredient": "ice",
+     "unit": "kg",
+     "qty_per_unit": 0.2,
+     "waste_rate": 0.2
+    },
+    {
+     "ingredient": "cup+lid",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.03
+    }
+   ],
+   "J03": [
+    {
+     "ingredient": "strawberry",
+     "unit": "kg",
+     "qty_per_unit": 0.12,
+     "waste_rate": 0.18
+    },
+    {
+     "ingredient": "milk",
+     "unit": "L",
+     "qty_per_unit": 0.25,
+     "waste_rate": 0.05
+    },
+    {
+     "ingredient": "ice",
+     "unit": "kg",
+     "qty_per_unit": 0.1,
+     "waste_rate": 0.2
+    },
+    {
+     "ingredient": "cup+lid",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.03
+    }
+   ],
+   "J04": [
+    {
+     "ingredient": "watermelon",
+     "unit": "kg",
+     "qty_per_unit": 0.4,
+     "waste_rate": 0.25
+    },
+    {
+     "ingredient": "ice",
+     "unit": "kg",
+     "qty_per_unit": 0.1,
+     "waste_rate": 0.2
+    },
+    {
+     "ingredient": "cup+lid",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.03
+    }
+   ],
+   "J05": [
+    {
+     "ingredient": "matcha powder",
+     "unit": "kg",
+     "qty_per_unit": 0.008,
+     "waste_rate": 0.05
+    },
+    {
+     "ingredient": "milk",
+     "unit": "L",
+     "qty_per_unit": 0.3,
+     "waste_rate": 0.05
+    },
+    {
+     "ingredient": "ice",
+     "unit": "kg",
+     "qty_per_unit": 0.1,
+     "waste_rate": 0.2
+    },
+    {
+     "ingredient": "cup+lid",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.03
+    }
+   ],
+   "J06": [
+    {
+     "ingredient": "passionfruit",
+     "unit": "kg",
+     "qty_per_unit": 0.1,
+     "waste_rate": 0.15
+    },
+    {
+     "ingredient": "soda water",
+     "unit": "L",
+     "qty_per_unit": 0.25,
+     "waste_rate": 0.05
+    },
+    {
+     "ingredient": "ice",
+     "unit": "kg",
+     "qty_per_unit": 0.15,
+     "waste_rate": 0.2
+    },
+    {
+     "ingredient": "cup+lid",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.03
+    }
+   ]
+  }
+ },
+ {
+  "id": "merchant_sausage_01",
+  "name": "Night Market Sausage Co.",
+  "segment": "sausage",
+  "currency": "TWD",
+  "budget": 10000,
+  "licenses_held": [],
+  "booth_reach": 0.09,
+  "conversion": 0.3,
+  "units_per_buyer": 1.3,
+  "capacity": {
+   "units_per_hour": 45,
+   "hours": 8,
+   "hourly_profile": [
+    0.06,
+    0.1,
+    0.16,
+    0.18,
+    0.14,
+    0.12,
+    0.14,
+    0.1
+   ],
+   "label": "grill (parallel slots x cook time)"
+  },
+  "skus": [
+   {
+    "id": "S01",
+    "name": "Classic Taiwanese sausage",
+    "price": 50,
+    "unit_cost": 18,
+    "salvage_value": 0,
+    "moq": 20,
+    "lot_size": 10,
+    "max_stock": 300,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "classic_snack",
+     "grilled"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.9,
+    "shelf_life_days": null
+   },
+   {
+    "id": "S02",
+    "name": "Mala spicy sausage",
+    "price": 60,
+    "unit_cost": 22,
+    "salvage_value": 0,
+    "moq": 20,
+    "lot_size": 10,
+    "max_stock": 300,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "spicy",
+     "grilled"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.9,
+    "shelf_life_days": null
+   },
+   {
+    "id": "S03",
+    "name": "Cheese-filled sausage",
+    "price": 70,
+    "unit_cost": 28,
+    "salvage_value": 0,
+    "moq": 20,
+    "lot_size": 10,
+    "max_stock": 300,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "cheese",
+     "kids"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.9,
+    "shelf_life_days": null
+   },
+   {
+    "id": "S04",
+    "name": "Sausage in sticky rice",
+    "price": 90,
+    "unit_cost": 38,
+    "salvage_value": 0,
+    "moq": 20,
+    "lot_size": 10,
+    "max_stock": 300,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "classic_snack",
+     "local_culture"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.9,
+    "shelf_life_days": null
+   },
+   {
+    "id": "S05",
+    "name": "Black-pepper garlic sausage",
+    "price": 60,
+    "unit_cost": 21,
+    "salvage_value": 0,
+    "moq": 20,
+    "lot_size": 10,
+    "max_stock": 300,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "spicy",
+     "grilled"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.9,
+    "shelf_life_days": null
+   }
+  ],
+  "recipes": {
+   "S01": [
+    {
+     "ingredient": "raw sausage",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.04
+    },
+    {
+     "ingredient": "skewer",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.02
+    }
+   ],
+   "S02": [
+    {
+     "ingredient": "raw sausage",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.04
+    },
+    {
+     "ingredient": "skewer",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.02
+    }
+   ],
+   "S03": [
+    {
+     "ingredient": "raw sausage",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.04
+    },
+    {
+     "ingredient": "skewer",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.02
+    }
+   ],
+   "S05": [
+    {
+     "ingredient": "raw sausage",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.04
+    },
+    {
+     "ingredient": "skewer",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.02
+    }
+   ],
+   "S04": [
+    {
+     "ingredient": "raw sausage",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.04
+    },
+    {
+     "ingredient": "sticky rice bun",
+     "unit": "pc",
+     "qty_per_unit": 1,
+     "waste_rate": 0.06
+    },
+    {
+     "ingredient": "garlic",
+     "unit": "kg",
+     "qty_per_unit": 0.01,
+     "waste_rate": 0.1
+    }
+   ]
+  }
+ },
+ {
+  "id": "merchant_newyear_01",
+  "name": "Prosperity New Year Goods",
+  "segment": "new_year_goods",
+  "currency": "TWD",
+  "budget": 30000,
+  "licenses_held": [],
+  "booth_reach": 0.07,
+  "conversion": 0.3,
+  "units_per_buyer": 1.4,
+  "skus": [
+   {
+    "id": "N01",
+    "name": "Candied fruit gift box",
+    "price": 280,
+    "unit_cost": 150,
+    "salvage_value": 90,
+    "moq": 10,
+    "lot_size": 5,
+    "max_stock": 200,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "gifting",
+     "sweet"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.9,
+    "shelf_life_days": 30
+   },
+   {
+    "id": "N02",
+    "name": "Fresh radish cake",
+    "price": 150,
+    "unit_cost": 70,
+    "salvage_value": 0,
+    "moq": 10,
+    "lot_size": 5,
+    "max_stock": 200,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "traditional",
+     "family"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.9,
+    "shelf_life_days": 2
+   },
+   {
+    "id": "N03",
+    "name": "Nian gao (rice cake)",
+    "price": 180,
+    "unit_cost": 85,
+    "salvage_value": 20,
+    "moq": 10,
+    "lot_size": 5,
+    "max_stock": 200,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "traditional",
+     "sweet"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.9,
+    "shelf_life_days": 5
+   },
+   {
+    "id": "N04",
+    "name": "Spring couplet set",
+    "price": 120,
+    "unit_cost": 35,
+    "salvage_value": 5,
+    "moq": 20,
+    "lot_size": 10,
+    "max_stock": 300,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "festive",
+     "traditional"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.9,
+    "shelf_life_days": 999
+   },
+   {
+    "id": "N05",
+    "name": "Mixed nut gift box",
+    "price": 350,
+    "unit_cost": 200,
+    "salvage_value": 140,
+    "moq": 10,
+    "lot_size": 5,
+    "max_stock": 150,
+    "base_weight": 1.0,
+    "concept_tags": [
+     "gifting",
+     "family"
+    ],
+    "requires_license": null,
+    "rain_factor": 0.9,
+    "shelf_life_days": 60
+   }
+  ]
+ }
+]

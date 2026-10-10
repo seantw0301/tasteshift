@@ -1,13 +1,64 @@
 {
-  "_note": "SYNTHETIC stand-in for Qloo responses. IDs are prefixed mock: and are NOT Qloo IDs. A tag absent from an event is unknown, not zero.",
-  "evt_anime_music": {
-    "anime": 0.95, "jpop": 0.90, "cosplay": 0.85, "music_live": 0.85, "collectibles": 0.80,
-    "gaming": 0.75, "kawaii": 0.70, "streetwear": 0.60, "plush": 0.45, "stationery": 0.40,
-    "local_culture": 0.25, "crafts": 0.20, "kids": 0.15, "family": 0.15
-  },
-  "evt_family_fair": {
-    "family": 0.95, "kids": 0.95, "crafts": 0.85, "picture_books": 0.80, "plush": 0.80,
-    "outdoor": 0.70, "eco": 0.60, "local_culture": 0.60, "stationery": 0.60, "kawaii": 0.55,
-    "anime": 0.35, "collectibles": 0.30, "gaming": 0.30, "music_live": 0.30
-  }
+ "_note": "SYNTHETIC stand-in for Qloo responses. IDs are prefixed mock: and are NOT Qloo IDs. A tag absent from an event is unknown, not zero.",
+ "evt_anime_music": {
+  "anime": 0.95,
+  "jpop": 0.9,
+  "cosplay": 0.85,
+  "music_live": 0.85,
+  "collectibles": 0.8,
+  "gaming": 0.75,
+  "kawaii": 0.7,
+  "streetwear": 0.6,
+  "plush": 0.45,
+  "stationery": 0.4,
+  "local_culture": 0.25,
+  "crafts": 0.2,
+  "kids": 0.15,
+  "family": 0.15,
+  "matcha": 0.7,
+  "spicy": 0.65,
+  "sweet": 0.6,
+  "grilled": 0.6,
+  "cheese": 0.6,
+  "refreshing": 0.55,
+  "tea": 0.5,
+  "classic_snack": 0.5,
+  "tropical_fruit": 0.45
+ },
+ "evt_family_fair": {
+  "family": 0.95,
+  "kids": 0.95,
+  "crafts": 0.85,
+  "picture_books": 0.8,
+  "plush": 0.8,
+  "outdoor": 0.7,
+  "eco": 0.6,
+  "local_culture": 0.6,
+  "stationery": 0.6,
+  "kawaii": 0.55,
+  "anime": 0.35,
+  "collectibles": 0.3,
+  "gaming": 0.3,
+  "music_live": 0.3,
+  "sweet": 0.8,
+  "classic_snack": 0.75,
+  "refreshing": 0.7,
+  "cheese": 0.7,
+  "tropical_fruit": 0.65,
+  "grilled": 0.6,
+  "tea": 0.4,
+  "matcha": 0.35,
+  "spicy": 0.25
+ },
+ "evt_lunar_market": {
+  "festive": 0.95,
+  "traditional": 0.9,
+  "gifting": 0.9,
+  "family": 0.85,
+  "sweet": 0.7,
+  "local_culture": 0.75,
+  "classic_snack": 0.7,
+  "grilled": 0.55,
+  "tea": 0.6
+ }
 }
