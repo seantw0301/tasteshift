@@ -14,5 +14,6 @@ scripts/smoke.sh    # tests + API check
 Runs in **mock mode** today: cultural signals are synthetic, not live Qloo data. See [docs/](docs/).
 
 - [docs/architecture.md](docs/architecture.md) — 12-layer summary, model, assumptions, limits
+- [docs/deploy.md](docs/deploy.md) — sub-path deployment
 
 License: [MIT](LICENSE)
