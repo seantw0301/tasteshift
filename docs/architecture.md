@@ -41,5 +41,20 @@ Not built yet from the spec: catalog import, `/api/qloo/affinity`, `/api/forecas
 
 - Mock mode: affinities are hand-written synthetic values with `mock:` ids. They are not Qloo data.
 - The hidden environment assumes affinity moves demand, so the ablation shows the mechanism, not real-world lift.
-- Live Qloo client is not implemented; setting `QLOO_API_KEY` currently falls back to mock with a visible note.
+- Live Qloo: only the harness runner, result envelope and `find_tags` are wired (the parts the hackathon kit documents). Affinity is still synthetic; `rank` waits on checking its input schema with `qloo exec --help`.
 - Catalog, prices, reach and conversion are assumptions, not measurements.
+
+## Live Qloo setup
+
+Supported surface is `qloo exec` from `@qloo/qloo-harness` (Node ≥ 22.19, harness ≥ 0.1.26). The key stays in the harness's private config, never in this repo or the browser.
+
+```bash
+npm install --global @qloo/qloo-harness
+qloo setup --qloo        # enter the event key yourself
+qloo setup --status      # expect "Qloo data: ready"
+scripts/qloo_resolve_tags.sh
+```
+
+The backend defaults `QLOO_BASE_URL` to `https://hackathon.api.qloo.com`. The resolver saves tag candidates for review; a candidate is not a confirmed match, and no ID is used until one tag per concept is confirmed.
+
+Submission needs (kit `docs/SUBMISSION.md`): problem statement, workflows used and why, redacted request-to-result walkthrough with tag choices, demo/screenshots without credentials, clean-environment setup steps, known limitations.

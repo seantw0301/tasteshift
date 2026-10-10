@@ -1,12 +1,18 @@
 """Qloo Evidence Gateway.
 
 Mock mode serves the synthetic fixture and labels every record `synthetic` with a `mock:` id,
-so nothing here can be mistaken for a real Qloo ID. Live mode is intentionally not implemented
-until an API key is available and the request shape is verified against Qloo's docs; asking for
-it degrades to mock with an explicit fallback note instead of pretending to be live.
+so nothing here can be mistaken for a real Qloo ID.
+
+Live calls go through the hackathon-supported surface, `qloo exec <workflow>` from
+@qloo/qloo-harness, which reads the credential from its own private config or QLOO_API_KEY.
+Only what the hackathon kit documents is wired: the result envelope and `find_tags`.
+Affinity stays synthetic until the `rank` input schema is checked against `qloo exec --help`.
 """
 import json
 import os
+import shutil
+import subprocess
+import tempfile
 from typing import Dict, List, Optional, Tuple
 
 from .models import Event, QlooEvidence
@@ -15,9 +21,55 @@ from .store import FIXTURES
 _CACHE: Dict[str, List[QlooEvidence]] = {}
 
 
+HACKATHON_BASE_URL = "https://hackathon.api.qloo.com"
+ENVELOPE_STATUSES = {"ok", "empty", "needs_input", "partial", "degraded", "error"}
+
+
+def _bin() -> str:
+    return os.environ.get("QLOO_BIN", "qloo")
+
+
+def harness_installed() -> bool:
+    return shutil.which(_bin()) is not None
+
+
+def _error(code: str, summary: str, retryable: bool = False) -> dict:
+    return {"status": "error", "summary": summary, "results": [], "result_count": 0,
+            "error": {"code": code, "retryable": retryable, "recovery": None}}
+
+
+def run_workflow(workflow: str, payload: dict, timeout: int = 30) -> dict:
+    """Run one harness workflow. Always returns a result envelope; never raises, never retries."""
+    if not harness_installed():
+        return _error("HARNESS_MISSING", "qloo harness not found; npm install --global @qloo/qloo-harness")
+    env = dict(os.environ)
+    env.setdefault("QLOO_BASE_URL", HACKATHON_BASE_URL)
+    env.setdefault("QLOO_TRUSTED_BASE_URL", HACKATHON_BASE_URL)
+    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+        json.dump(payload, f)
+    try:
+        proc = subprocess.run([_bin(), "exec", workflow, "--input-file", f.name],
+                              capture_output=True, text=True, timeout=timeout, env=env)
+        envelope = json.loads(proc.stdout)
+    except subprocess.TimeoutExpired:
+        return _error("TIMEOUT", f"{workflow} timed out after {timeout}s", retryable=True)
+    except (ValueError, OSError) as e:
+        return _error("BAD_OUTPUT", f"{workflow} returned no JSON envelope ({type(e).__name__})")
+    finally:
+        os.unlink(f.name)
+    if not isinstance(envelope, dict) or envelope.get("status") not in ENVELOPE_STATUSES:
+        return _error("UNKNOWN", f"{workflow} returned an unrecognised envelope")
+    return envelope
+
+
+def find_tags(query: str, limit: int = 5) -> dict:
+    """Candidate Qloo tags for a concept. Candidates need review before use; they are not matches."""
+    return run_workflow("find_tags", {"query": query, "limit": limit})
+
+
 def mode() -> Tuple[str, Optional[str]]:
-    if os.environ.get("QLOO_API_KEY"):
-        return "mock", "QLOO_API_KEY is set but the live client is not implemented yet; serving synthetic fixture"
+    if harness_installed():
+        return "mock", "Qloo harness found, but affinity is still the synthetic fixture until the rank workflow is wired"
     return "mock", None
 
 
