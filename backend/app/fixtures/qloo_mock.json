@@ -1,0 +1,13 @@
+{
+  "_note": "SYNTHETIC stand-in for Qloo responses. IDs are prefixed mock: and are NOT Qloo IDs. A tag absent from an event is unknown, not zero.",
+  "evt_anime_music": {
+    "anime": 0.95, "jpop": 0.90, "cosplay": 0.85, "music_live": 0.85, "collectibles": 0.80,
+    "gaming": 0.75, "kawaii": 0.70, "streetwear": 0.60, "plush": 0.45, "stationery": 0.40,
+    "local_culture": 0.25, "crafts": 0.20, "kids": 0.15, "family": 0.15
+  },
+  "evt_family_fair": {
+    "family": 0.95, "kids": 0.95, "crafts": 0.85, "picture_books": 0.80, "plush": 0.80,
+    "outdoor": 0.70, "eco": 0.60, "local_culture": 0.60, "stationery": 0.60, "kawaii": 0.55,
+    "anime": 0.35, "collectibles": 0.30, "gaming": 0.30, "music_live": 0.30
+  }
+}

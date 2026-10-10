@@ -1,0 +1,4 @@
+[
+  {"id": "evt_anime_music", "name": "Anime Music Festival", "theme": "anime music festival", "geo": "Taipei", "date": "2026-11-14", "attendance": 8000, "attendance_source": "synthetic", "seed_concepts": ["anime", "j-pop", "cosplay"]},
+  {"id": "evt_family_fair", "name": "Family Fun Fair", "theme": "family and kids garden fair", "geo": "Taipei", "date": "2026-11-21", "attendance": 8000, "attendance_source": "synthetic", "seed_concepts": ["family", "kids", "crafts"]}
+]
