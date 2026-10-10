@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ssh -p 1122 root@192.168.1.200:*)",
+      "Bash(rsync:*)",
+      "Bash(scripts/deploy.sh:*)"
+    ]
+  }
+}

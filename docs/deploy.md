@@ -6,37 +6,14 @@ Public demo lives under a sub-path (`/tasteshift`) of an existing site.
 - **Backend**: FastAPI on `127.0.0.1:8010`, kept outside the web root so source and the virtualenv are not served as files.
 - **Qloo key**: only on the server (harness config or the service's environment), never in the static bundle.
 
-## One-time server setup (not automated)
+## One-time server setup
 
 ```bash
-python3 -m venv /opt/tasteshift-api/.venv
-/opt/tasteshift-api/.venv/bin/pip install -r /opt/tasteshift-api/requirements.txt
+scripts/deploy.sh         # copies files
+scripts/server_setup.sh   # venv, systemd service, nginx proxy, reload
 ```
 
-`/etc/systemd/system/tasteshift-api.service`:
-
-```ini
-[Unit]
-Description=TasteShift API
-After=network.target
-
-[Service]
-WorkingDirectory=/opt/tasteshift-api
-Environment=CORS_ORIGINS=https://demo.example.com
-ExecStart=/opt/tasteshift-api/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8010
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-```
-
-nginx, inside the site's `server` block:
-
-```nginx
-location /tasteshift/api/ {
-    proxy_pass http://127.0.0.1:8010/api/;
-}
-```
+`server_setup.sh` writes `tasteshift-api.service` and a `tasteshift.conf` in the site's nginx extension directory, tests the nginx config and reloads it only if the test passes.
 
 ## Each release
 
