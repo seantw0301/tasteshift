@@ -2,8 +2,11 @@
 
 Know your crowd. Choose your products. Stock with confidence.
 
-P0 demo: one souvenir merchant, 12 SKUs, two 8,000-person events with different cultures.
-It picks products and quantities under budget/MOQ/licence limits, compares Qloo On vs Off, and exposes a decision audit.
+Given an event, a vendor, a catalog and constraints, it picks products and quantities, and shows why.
+
+- **Culture comparison**: one souvenir merchant, 12 SKUs, two 8,000-person events; Qloo On vs Off; decision audit
+- **Plans & what-if**: three risk plans, rain/attendance/cost scenarios, juice recipes, sausage grill capacity
+- **Live ops (simulated)**: restock from sales, calibration, multi-day new-year restock
 
 ```bash
 scripts/install.sh

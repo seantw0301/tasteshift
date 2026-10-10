@@ -48,6 +48,12 @@ def test_restock_and_calibration():
     pipeline.make_plan(PlanRequest(event_id=A, weight_overrides=c["weight_overrides"]))
 
 
+def test_calibration_projects_partial_sales():
+    half = {"SKU03": 20}
+    c = p2.calibrate(p2.SalesRequest(event_id=A, elapsed=0.5, sales=half))
+    assert c["skus"][0]["actual"] == 40 and c["projected"]
+
+
 def test_sales_csv():
     assert p2.parse_sales_csv("sku_id,units_sold\nSKU01,12\nSKU02, 3\n") == {"SKU01": 12, "SKU02": 3}
 

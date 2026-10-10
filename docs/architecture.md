@@ -7,7 +7,7 @@ Source spec: `TasteShift_Competitive_Advantages_Differentiation_v2` (project lib
 | L | Layer | P0 answer |
 |---|---|---|
 | 1 | Business | Event vendors decide what to sell and how much. KPI: profit, stockout, leftover vs a no-culture baseline. MVP: Qloo hackathon demo (due 2026-10-30 23:45 EDT). |
-| 2 | Product | One page: two events side by side, Qloo On/Off, decision audit. Out of scope: what-if replans, three risk plans, BOM, POS import (P1/P2). |
+| 2 | Product | Three tabs: culture comparison (Qloo On/Off, audit), plans & what-if (three risk plans, scenarios, BOM, capacity), live ops (simulated restock, calibration, multi-day). |
 | 3 | AI strategy | Qloo supplies cultural affinity only. Demand, cost and optimization are deterministic code. No LLM in P0. |
 | 4 | Workflow | fixtures → event DNA → SKU affinity → demand scenarios → optimizer → plan → trace; ablation re-scores On and Off plans. |
 | 5 | Data flow | Every input carries an origin tag (`qloo_live`, `merchant_input`, `synthetic`, `model_estimate`, …). Missing = `unknown`, never 0. No personal data. |
@@ -27,7 +27,13 @@ Source spec: `TasteShift_Competitive_Advantages_Differentiation_v2` (project lib
 - `POST /api/evaluation/ablation`
 - `GET /api/decisions/{id}/audit`
 
-Not built yet from the spec: catalog import, `/api/qloo/affinity`, `/api/forecast/demand` (folded into optimize), `/api/scenarios/replan`.
+- `POST /api/optimize/plans` — conservative / balanced / aggressive
+- `POST /api/scenarios/replan` — same constraints, returns before/after and why
+- `GET /api/decisions/{id}/purchase-order.csv`
+- `POST /api/sales/simulate`, `POST /api/sales/restock`, `POST /api/calibration`
+- `POST /api/restock/multiday`
+
+Not built from the spec: catalog import, `/api/qloo/affinity`, `/api/forecast/demand` (folded into optimize).
 
 ## Model
 
@@ -36,6 +42,20 @@ Not built yet from the spec: catalog import, `/api/qloo/affinity`, `/api/forecas
 - **Scenarios**: 4,000 seeded draws, lognormal SKU noise × shared crowd shock.
 - **Optimizer**: greedy marginal expected profit per dollar. Per SKU `qty = 0` or `MOQ ≤ qty ≤ max_stock` in lot steps; total cost ≤ budget; unlicensed SKUs excluded.
 - **Ablation**: On and Off plans scored on the same 40 hidden demand environments whose tilt differs from the planner's and which add taste noise the planner cannot see. Reports mean delta, win rate and range, including losses.
+
+## P1
+
+- **Risk plans**: conservative penalises downside (mean minus worst-10% profit, weight 0.5); aggressive penalises lost sales (0.6 x margin). Balanced is plain expected profit. When the budget already binds, balanced and aggressive coincide.
+- **What-if**: rain (crowd x0.7 plus per-SKU `rain_factor`), attendance, unit cost, price, rival stalls, supplier MOQ. Price changes do not feed back into demand.
+- **Capacity** (juice prep line, sausage grill): demand is capped hour by hour against units/hour; peak-hour overflow is lost.
+- **BOM**: ingredient need = stock x qty per unit x (1 + waste rate); countable items round up.
+
+## P2 (all simulated)
+
+- **Restock from sales**: forecast blended with run rate (prior worth 25% of the event); a sell-out is a lower bound, never a reason to cut. Restock budget defaults to unspent budget plus revenue so far.
+- **Calibration**: weight = sqrt(actual / forecast), clipped to 0.5–2, fed to the next plan as `weight_overrides`. Partial-event sales are projected at the current run rate.
+- **Multi-day**: daily order-up-to levels from the newsvendor critical fractile, shelf-life ageing (oldest sold first), last-day clearance at salvage value. Budget applies to the firm day-1 order only; no lead time.
+- **Supplier hand-off**: purchase-order CSV. No POS or supplier system is connected.
 
 ## Limits
 

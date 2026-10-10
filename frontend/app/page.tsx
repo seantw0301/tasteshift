@@ -3,11 +3,15 @@
 import { useCallback, useEffect, useState } from "react";
 import AuditPanel from "./AuditPanel";
 import EventColumn from "./EventColumn";
-import { api, type Ablation, type EventInfo, type EventResult, type Plan } from "./types";
+import OpsTab from "./OpsTab";
+import PlannerTab from "./PlannerTab";
+import { api, type Ablation, type EventInfo, type EventResult, type MerchantInfo, type Plan } from "./types";
 
 export default function Home() {
   const [events, setEvents] = useState<EventInfo[]>([]);
   const [merchant, setMerchant] = useState("");
+  const [merchants, setMerchants] = useState<MerchantInfo[]>([]);
+  const [tab, setTab] = useState("compare");
   const [attendance, setAttendance] = useState(8000);
   const [budget, setBudget] = useState(20000);
   const [qlooOn, setQlooOn] = useState(true);
@@ -37,12 +41,14 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    api<{ events: EventInfo[]; merchant: { name: string; skus: unknown[] }; qloo_mode: string }>("/api/fixtures")
+    api<{ events: (EventInfo & { days: number })[]; merchants: MerchantInfo[]; merchant: { name: string; skus: unknown[] }; qloo_mode: string }>("/api/fixtures")
       .then((f) => {
-        setEvents(f.events);
+        const single = f.events.filter((e) => e.days === 1);
+        setEvents(single);
+        setMerchants(f.merchants.filter((m) => m.segment !== "new_year_goods"));
         setMerchant(`${f.merchant.name} · ${f.merchant.skus.length} SKUs`);
         setMode(f.qloo_mode);
-        run(f.events, 8000, 20000);
+        run(single, 8000, 20000);
       })
       .catch((e) => setError(`Backend not reachable (${e.message}). Start it with scripts/dev.sh.`));
   }, [run]);
@@ -53,9 +59,26 @@ export default function Home() {
         <div>
           <h1 className="text-2xl font-bold tracking-tight">TasteShift</h1>
           <p className="text-stone-600">Same merchant, same crowd size, same budget. Different culture, different purchase order.</p>
-          <p className="mt-1 text-sm text-stone-500">{merchant}</p>
         </div>
-        <div className="flex flex-wrap items-end gap-3 text-sm">
+        <nav className="flex gap-1 rounded-lg bg-stone-200 p-1 text-sm">
+          {[["compare", "Culture comparison"], ["plan", "Plans & what-if"], ["ops", "Live ops (simulated)"]].map(([k, label]) => (
+            <button key={k} onClick={() => setTab(k)}
+              className={`rounded-md px-3 py-1.5 ${tab === k ? "bg-white font-medium shadow-sm" : "text-stone-600"}`}>{label}</button>
+          ))}
+        </nav>
+      </header>
+
+      {mode === "mock" && (
+        <p className="mt-4 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-900">
+          Mock mode: cultural signals are a synthetic stand-in, not live Qloo responses. All demand and profit figures are simulated.
+        </p>
+      )}
+      {error && <p className="mt-4 rounded-md bg-rose-50 px-3 py-2 text-sm text-rose-800">{error}</p>}
+
+      {tab === "compare" && (<>
+        <div className="mt-6 flex flex-wrap items-end justify-between gap-3">
+          <p className="text-sm text-stone-500">{merchant}</p>
+          <div className="flex flex-wrap items-end gap-3 text-sm">
           <label>Attendance
             <input type="number" value={attendance} onChange={(e) => setAttendance(+e.target.value)}
               className="mt-1 block w-28 rounded-md border border-stone-300 bg-white px-2 py-1" /></label>
@@ -67,21 +90,16 @@ export default function Home() {
             className={`rounded-md px-4 py-1.5 font-medium ${qlooOn ? "bg-teal-600 text-white" : "bg-stone-200 text-stone-700"}`}>
             Qloo {qlooOn ? "On" : "Off"}</button>
         </div>
-      </header>
-
-      {mode === "mock" && (
-        <p className="mt-4 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-900">
-          Mock mode: cultural signals are a synthetic stand-in, not live Qloo responses. All demand and profit figures are simulated.
-        </p>
-      )}
-      {error && <p className="mt-4 rounded-md bg-rose-50 px-3 py-2 text-sm text-rose-800">{error}</p>}
-
+        </div>
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
         {events.filter((e) => results[e.id]).map((e) => (
           <EventColumn key={e.id} event={e} r={results[e.id]} qlooOn={qlooOn}
             onAudit={(id) => api(`/api/decisions/${id}/audit`).then(setTrace)} />
         ))}
       </div>
+      </>)}
+      {tab === "plan" && merchants.length > 0 && <PlannerTab merchants={merchants} events={events} onAudit={(id) => api(`/api/decisions/${id}/audit`).then(setTrace)} />}
+      {tab === "ops" && merchants.length > 0 && <OpsTab merchants={merchants} events={events} />}
       {trace && <AuditPanel trace={trace} onClose={() => setTrace(null)} />}
     </main>
   );

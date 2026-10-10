@@ -33,3 +33,13 @@ export async function api<T>(path: string, body?: unknown): Promise<T> {
   if (!res.ok) throw new Error(`${path} -> ${res.status}`);
   return res.json();
 }
+
+export const API_BASE = API;
+export type MerchantInfo = { id: string; name: string; segment: string; budget: number };
+export type FullPlan = Plan & {
+  risk: string; scenario_notes: string[]; capacity_note: string | null;
+  ingredients: { ingredient: string; unit: string; quantity: number }[];
+  metrics: { expected_profit: number; profit_p10: number; avg_stockout_rate: number | null; expected_leftover_units: number };
+};
+export const nt = (n: number) => "NT$" + Math.round(n).toLocaleString();
+export const pct = (n: number | null | undefined) => (n == null ? "–" : Math.round(n * 100) + "%");

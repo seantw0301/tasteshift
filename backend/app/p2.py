@@ -80,11 +80,13 @@ def calibrate(req: SalesRequest) -> dict:
     plan = pipeline.make_plan(req)
     demand = pipeline.build_demand(req)[6]
     rows, errs, weights = [], [], {}
+    e = min(max(req.elapsed, 0.05), 1.0)
     for i, r in enumerate(plan.skus):
         if r.stock_qty == 0 or r.sku_id not in req.sales:
             continue
-        actual, forecast = req.sales[r.sku_id], float(demand[:, i].mean())
-        sold_out = actual >= r.stock_qty
+        sold, forecast = req.sales[r.sku_id], float(demand[:, i].mean())
+        sold_out = sold >= r.stock_qty
+        actual = round(sold / e, 1)  # projected to the full event when it is not over yet
         ratio = actual / forecast if forecast else 1.0
         w = float(np.clip(math.sqrt(max(ratio, 0.01)), 0.5, 2.0))
         if sold_out:
@@ -93,11 +95,11 @@ def calibrate(req: SalesRequest) -> dict:
             errs.append(abs(actual - forecast) / forecast)
         weights[r.sku_id] = round(w, 2)
         rows.append({"sku_id": r.sku_id, "name": r.name, "forecast": round(forecast, 1), "actual": actual,
-                     "sold_out": sold_out, "weight": round(w, 2)})
+                     "sold": sold, "sold_out": sold_out, "weight": round(w, 2)})
     return {"skus": rows, "weight_overrides": weights,
             "mape_uncensored": round(float(np.mean(errs)), 3) if errs else None,
-            "origin": "simulation",
-            "note": "Weights are the square root of actual/forecast, clipped to 0.5-2. One event is weak evidence; sell-outs are treated as lower bounds."}
+            "origin": "simulation", "projected": e < 1,
+            "note": "Sales are projected to the full event at the current run rate. Weights are the square root of actual/forecast, clipped to 0.5-2. One event is weak evidence; sell-outs are treated as lower bounds."}
 
 
 def _lots(q: float, s) -> int:
