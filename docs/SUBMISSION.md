@@ -44,9 +44,15 @@ Run the stack (see Setup), then open http://localhost:3000/.
 - **Plans & what-if**: three risk plans and scenarios (rain, attendance, cost).
 - **Live ops (simulated)**: mid-event restock, calibration, multi-day restock.
 
-Screenshots: to be captured before submission, with no credentials visible.
+Screenshots (captured from the running demo, no credentials visible):
+
+- [01_culture_comparison.png](screenshots/01_culture_comparison.png): Qloo evidence panel, synthetic culture profile, Qloo On vs Off.
+- [02_plans_what_if.png](screenshots/02_plans_what_if.png): three risk plans and scenarios.
+- [03_live_ops.png](screenshots/03_live_ops.png): mid-event restock and multi-day restock.
 
 ## Setup (clean environment)
+
+Verified on a fresh clone of `feat/qloo-evidence`: install, 18 unit tests, smoke test, recommend for all three events, and frontend build all pass.
 
 Requirements: Python 3, Node 22.19 or later, npm.
 
