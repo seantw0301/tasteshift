@@ -43,3 +43,6 @@ export type FullPlan = Plan & {
 };
 export const nt = (n: number) => "NT$" + Math.round(n).toLocaleString();
 export const pct = (n: number | null | undefined) => (n == null ? "–" : Math.round(n * 100) + "%");
+
+export type RecEntity = { entity_id: string; name: string; subtype?: string; affinity?: number | null };
+export type RecEnvelope = { status: string; summary?: string | null; results: RecEntity[] };

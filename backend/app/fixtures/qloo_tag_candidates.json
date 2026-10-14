@@ -1,0 +1,2729 @@
+{
+  "origin": "qloo_live",
+  "fetched_at": "2026-10-14T20:19:34.973691+00:00",
+  "reviewed": true,
+  "candidates": {
+    "anime": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "anime",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:genre:qloo:anime",
+          "name": "Anime",
+          "type": "urn:tag:genre:qloo",
+          "popularity": 0.997691708230161
+        },
+        {
+          "id": "urn:tag:subgenre:qloo:anime",
+          "name": "Anime",
+          "type": "urn:tag:subgenre:qloo",
+          "popularity": 0.9981418365139728
+        },
+        {
+          "id": "urn:tag:interests:qloo:anime",
+          "name": "Anime",
+          "type": "urn:tag:interests:qloo",
+          "popularity": 0.9976890377779449
+        },
+        {
+          "id": "urn:tag:category:qloo:anime",
+          "name": "Anime",
+          "type": "urn:tag:category:qloo",
+          "popularity": 0.9836708130411691
+        },
+        {
+          "id": "urn:tag:genre:media:anime",
+          "name": "Anime",
+          "type": "urn:tag:genre:media",
+          "popularity": 0.9985361209293865
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "anime",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "anime"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-ee25df41-719f-4940-b371-cdfb77350bb4",
+        "duration_ms": 1590
+      }
+    },
+    "collectibles": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "collectibles",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:interests:qloo:collectibles",
+          "name": "Collectibles",
+          "type": "urn:tag:interests:qloo",
+          "popularity": 0.9976042901914447
+        },
+        {
+          "id": "urn:tag:product_service:qloo:collectibles",
+          "name": "Collectibles",
+          "type": "urn:tag:product_service:qloo",
+          "popularity": 0.9945547908462553
+        },
+        {
+          "id": "urn:tag:hobby:qloo:collector",
+          "name": "collector",
+          "type": "urn:tag:hobby:qloo",
+          "popularity": 0.9910945131160831
+        },
+        {
+          "id": "urn:tag:interests:qloo:collectible_merchandise",
+          "name": "Collectible Merchandise",
+          "type": "urn:tag:interests:qloo",
+          "popularity": 0.9829611796361367
+        },
+        {
+          "id": "urn:tag:interests:qloo:hobbyist_collectibles",
+          "name": "Hobbyist Collectibles",
+          "type": "urn:tag:interests:qloo",
+          "popularity": 0.9701391604066816
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "collectibles",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "collectibles"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-e6293ad5-9dca-4a91-8763-29ce08f22c74",
+        "duration_ms": 2161
+      }
+    },
+    "cosplay": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "cosplay",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:interests:qloo:cosplay",
+          "name": "Cosplay",
+          "type": "urn:tag:interests:qloo",
+          "popularity": 0.9987038096200056
+        },
+        {
+          "id": "urn:tag:keyword:media:cosplay",
+          "name": "cosplay",
+          "type": "urn:tag:keyword:media",
+          "popularity": 0.9931273702759701
+        },
+        {
+          "id": "urn:tag:keyword:media:cosplayer",
+          "name": "cosplayer",
+          "type": "urn:tag:keyword:media",
+          "popularity": 0.9937957432826907
+        },
+        {
+          "id": "urn:tag:keyword:qloo:cosplay",
+          "name": "Cosplay",
+          "type": "urn:tag:keyword:qloo",
+          "popularity": 0.9794292019604894
+        },
+        {
+          "id": "urn:tag:hobby:qloo:cosplay",
+          "name": "Cosplay",
+          "type": "urn:tag:hobby:qloo",
+          "popularity": 0.9166118307630754
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "cosplay",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "cosplay"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-c9de213d-fde3-4339-be90-2e4cf281ddd8",
+        "duration_ms": 1703
+      }
+    },
+    "crafts": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "crafts",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:decor:qloo:arts_and_crafts",
+          "name": "Arts And Crafts",
+          "type": "urn:tag:decor:qloo",
+          "popularity": 0.9896694341453132
+        },
+        {
+          "id": "urn:tag:decor:qloo:crafty",
+          "name": "Crafty",
+          "type": "urn:tag:decor:qloo",
+          "popularity": 0.9723106307718093
+        },
+        {
+          "id": "urn:tag:genre:qloo:crafts",
+          "name": "Crafts",
+          "type": "urn:tag:genre:qloo",
+          "popularity": 0.9719376314314111
+        },
+        {
+          "id": "urn:tag:decor:qloo:craft",
+          "name": "Craft",
+          "type": "urn:tag:decor:qloo",
+          "popularity": 0.9501311113495319
+        },
+        {
+          "id": "urn:tag:decor:qloo:handmade_craft",
+          "name": "Handmade Craft",
+          "type": "urn:tag:decor:qloo",
+          "popularity": 0.9501311113495319
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "crafts",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "crafts"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-3ef341e6-092a-4888-891c-b3314bafc05f",
+        "duration_ms": 1882
+      }
+    },
+    "eco": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "eco",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:ambience:qloo:ecological",
+          "name": "Ecological",
+          "type": "urn:tag:ambience:qloo",
+          "popularity": 0.9960594335845182
+        },
+        {
+          "id": "urn:tag:adjective:qloo:eco_friendly",
+          "name": "eco-friendly",
+          "type": "urn:tag:adjective:qloo",
+          "popularity": 0.9917365764853641
+        },
+        {
+          "id": "urn:tag:subgenre:qloo:ecology",
+          "name": "Ecology",
+          "type": "urn:tag:subgenre:qloo",
+          "popularity": 0.9897063492200631
+        },
+        {
+          "id": "urn:tag:ambience:qloo:eco_responsible",
+          "name": "Eco-Responsible",
+          "type": "urn:tag:ambience:qloo",
+          "popularity": 0.9704118607035573
+        },
+        {
+          "id": "urn:tag:setting:qloo:eco_estate",
+          "name": "Eco Estate",
+          "type": "urn:tag:setting:qloo",
+          "popularity": 0.9667129702136189
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "eco",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "eco"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-2b011a83-c266-4b4f-90ec-114c3a793967",
+        "duration_ms": 3128
+      }
+    },
+    "family": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "family",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:lifestyle:qloo:family",
+          "name": "Family",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.9677209873824274
+        },
+        {
+          "id": "urn:tag:genre:qloo:family",
+          "name": "Family",
+          "type": "urn:tag:genre:qloo",
+          "popularity": 0.999707428396929
+        },
+        {
+          "id": "urn:tag:keyword:qloo:family",
+          "name": "Family",
+          "type": "urn:tag:keyword:qloo",
+          "popularity": 0.9996751782105049
+        },
+        {
+          "id": "urn:tag:subgenre:qloo:family",
+          "name": "Family",
+          "type": "urn:tag:subgenre:qloo",
+          "popularity": 0.9988499776074727
+        },
+        {
+          "id": "urn:tag:lifestyle:qloo:family_living",
+          "name": "Family Living",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.9951214765150221
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "family",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "family"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-897edcd2-737b-4d86-b54f-02a6ff216cb7",
+        "duration_ms": 2353
+      }
+    },
+    "gaming": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "gaming",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:genre:qloo:gaming",
+          "name": "Gaming",
+          "type": "urn:tag:genre:qloo",
+          "popularity": 0.9980095705865711
+        },
+        {
+          "id": "urn:tag:hobby:qloo:gaming",
+          "name": "Gaming",
+          "type": "urn:tag:hobby:qloo",
+          "popularity": 0.9836606810312909
+        },
+        {
+          "id": "urn:tag:lifestyle:qloo:gaming",
+          "name": "Gaming",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.997679298481628
+        },
+        {
+          "id": "urn:tag:hobby:qloo:gamer",
+          "name": "gamer",
+          "type": "urn:tag:hobby:qloo",
+          "popularity": 0.9979490141554389
+        },
+        {
+          "id": "urn:tag:hobby:qloo:video_games",
+          "name": "Video Games",
+          "type": "urn:tag:hobby:qloo",
+          "popularity": 0.9841574636861697
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "gaming",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "gaming"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-6dd43a97-1465-4fef-854a-b0b7a5b6a59a",
+        "duration_ms": 1793
+      }
+    },
+    "gifting": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "gifting",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:lifestyle:qloo:gift_giving",
+          "name": "Gift Giving",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.9964173527241675
+        },
+        {
+          "id": "urn:tag:lifestyle:qloo:gifting",
+          "name": "Gifting",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.9844626806659103
+        },
+        {
+          "id": "urn:tag:good_for:qloo:gifting",
+          "name": "Gifting",
+          "type": "urn:tag:good_for:qloo",
+          "popularity": 0.9785740698029718
+        },
+        {
+          "id": "urn:tag:good_for:qloo:gifts",
+          "name": "Gifts",
+          "type": "urn:tag:good_for:qloo",
+          "popularity": 0.9872048576643762
+        },
+        {
+          "id": "urn:tag:good_for:qloo:gift_giving",
+          "name": "Gift Giving",
+          "type": "urn:tag:good_for:qloo",
+          "popularity": 0.9728535674476124
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "gifting",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "gifting"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-7829c1f7-0867-41f2-84b1-5fcab8c22444",
+        "duration_ms": 2143
+      }
+    },
+    "j-pop": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "j-pop",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:genre:music:j_pop",
+          "name": " J-pop",
+          "type": "urn:tag:genre:music",
+          "popularity": 0.9993223334788468
+        },
+        {
+          "id": "urn:tag:genre:qloo:j_pop",
+          "name": "J -pop",
+          "type": "urn:tag:genre:qloo",
+          "popularity": 0.9993362355389122
+        },
+        {
+          "id": "urn:tag:genre:music:jpop",
+          "name": "JPop",
+          "type": "urn:tag:genre:music",
+          "popularity": 0.9986890435901057
+        },
+        {
+          "id": "urn:tag:genre:qloo:japanese_pop",
+          "name": "Japanese Pop",
+          "type": "urn:tag:genre:qloo",
+          "popularity": 0.9947871201890429
+        },
+        {
+          "id": "urn:tag:genre:qloo:jpop",
+          "name": "Jpop",
+          "type": "urn:tag:genre:qloo",
+          "popularity": 0.9811644365510764
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "j-pop",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "j-pop"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-c9c91ce8-8577-4092-b85f-d7f6e33f23e1",
+        "duration_ms": 945
+      }
+    },
+    "jpop": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "jpop",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:genre:music:jpop",
+          "name": "JPop",
+          "type": "urn:tag:genre:music",
+          "popularity": 0.9986890435901057
+        },
+        {
+          "id": "urn:tag:genre:music:j_pop",
+          "name": " J-pop",
+          "type": "urn:tag:genre:music",
+          "popularity": 0.9993223334788468
+        },
+        {
+          "id": "urn:tag:genre:qloo:j_pop",
+          "name": "J -pop",
+          "type": "urn:tag:genre:qloo",
+          "popularity": 0.9993362355389122
+        },
+        {
+          "id": "urn:tag:genre:qloo:jpop",
+          "name": "Jpop",
+          "type": "urn:tag:genre:qloo",
+          "popularity": 0.9811644365510764
+        },
+        {
+          "id": "urn:tag:genre:qloo:japanese_pop",
+          "name": "Japanese Pop",
+          "type": "urn:tag:genre:qloo",
+          "popularity": 0.9947871201890429
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "jpop",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "jpop"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-43db11d7-c486-4141-8d34-3cb259b64ed7",
+        "duration_ms": 679
+      }
+    },
+    "kawaii": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "kawaii",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:decor:qloo:kawaii",
+          "name": "Kawaii",
+          "type": "urn:tag:decor:qloo",
+          "popularity": 0.990489420061034
+        },
+        {
+          "id": "urn:tag:keyword:qloo:kawaii",
+          "name": "Kawaii",
+          "type": "urn:tag:keyword:qloo",
+          "popularity": 0.950188551824594
+        },
+        {
+          "id": "urn:tag:interests:qloo:kawaii_culture",
+          "name": "Kawaii Culture",
+          "type": "urn:tag:interests:qloo",
+          "popularity": 0.97548956850676
+        },
+        {
+          "id": "urn:tag:style:qloo:kawaii",
+          "name": "Kawaii",
+          "type": "urn:tag:style:qloo",
+          "popularity": 0.9637555229271675
+        },
+        {
+          "id": "urn:tag:cultural_relevance:qloo:kawaii_culture",
+          "name": "Kawaii Culture",
+          "type": "urn:tag:cultural_relevance:qloo",
+          "popularity": 0.9839618137899954
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "kawaii",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "kawaii"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-6838ab85-d632-4017-abb2-a7812b592529",
+        "duration_ms": 2598
+      }
+    },
+    "kids": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "kids",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:keyword:qloo:kids",
+          "name": "Kids",
+          "type": "urn:tag:keyword:qloo",
+          "popularity": 0.9911993094727559
+        },
+        {
+          "id": "urn:tag:subgenre:qloo:kids",
+          "name": "Kids",
+          "type": "urn:tag:subgenre:qloo",
+          "popularity": 0.9938850571390377
+        },
+        {
+          "id": "urn:tag:genre:media:kids",
+          "name": "Kids",
+          "type": "urn:tag:genre:media",
+          "popularity": 0.9995199469428271
+        },
+        {
+          "id": "urn:tag:keyword:media:kids_family",
+          "name": "kids family",
+          "type": "urn:tag:keyword:media",
+          "popularity": 0.997196472232018
+        },
+        {
+          "id": "urn:tag:genre:media:kids_family",
+          "name": "Kids & Family",
+          "type": "urn:tag:genre:media",
+          "popularity": 0.9995267016160791
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "kids",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "kids"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-ce5eb747-f654-4d3d-842c-13872849862b",
+        "duration_ms": 3130
+      }
+    },
+    "local culture": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "local culture",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:culture:qloo:local_markets",
+          "name": "Local Markets",
+          "type": "urn:tag:culture:qloo",
+          "popularity": 0.9940919386430616
+        },
+        {
+          "id": "urn:tag:culture:qloo:local_festivals",
+          "name": "Local Festivals",
+          "type": "urn:tag:culture:qloo",
+          "popularity": 0.9962919985554425
+        },
+        {
+          "id": "urn:tag:culture:qloo:local_market",
+          "name": "Local Market",
+          "type": "urn:tag:culture:qloo",
+          "popularity": 0.9745286769652918
+        },
+        {
+          "id": "urn:tag:cultural_relevance:qloo:local_culture",
+          "name": "Local Culture",
+          "type": "urn:tag:cultural_relevance:qloo",
+          "popularity": 0.9902410680049507
+        },
+        {
+          "id": "urn:tag:culture:qloo:local_folk_traditions",
+          "name": "Local Folk Traditions",
+          "type": "urn:tag:culture:qloo",
+          "popularity": 0.9550515766428426
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "local culture",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "local culture"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-ee6adca5-5533-4726-95b0-4d2d1f6bcaf5",
+        "duration_ms": 2762
+      }
+    },
+    "lunar new year": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "lunar new year",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:culture:qloo:chinese_new_year",
+          "name": "Chinese New Year",
+          "type": "urn:tag:culture:qloo",
+          "popularity": 0.9913741251716355
+        },
+        {
+          "id": "urn:tag:culture:qloo:lunar_new_year_celebrations",
+          "name": "Lunar New Year Celebrations",
+          "type": "urn:tag:culture:qloo",
+          "popularity": 0.9554297598022483
+        },
+        {
+          "id": "urn:tag:culture:qloo:chinese_new_year_celebrations",
+          "name": "Chinese New Year Celebrations",
+          "type": "urn:tag:culture:qloo",
+          "popularity": 0.9887282568246155
+        },
+        {
+          "id": "urn:tag:keyword:qloo:lunar_new_year",
+          "name": "Lunar New Year",
+          "type": "urn:tag:keyword:qloo",
+          "popularity": 0.9187776961412563
+        },
+        {
+          "id": "urn:tag:keyword:qloo:chinese_new_year",
+          "name": "Chinese New Year",
+          "type": "urn:tag:keyword:qloo",
+          "popularity": 0.9824590882407556
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "lunar new year",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "lunar new year"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-7ce667c9-3dd6-478c-9e93-12e90a947280",
+        "duration_ms": 2675
+      }
+    },
+    "music live": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "music live",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:music:qloo:live",
+          "name": "Live",
+          "type": "urn:tag:music:qloo",
+          "popularity": 0.944198701751801
+        },
+        {
+          "id": "urn:tag:genre:music:live",
+          "name": "live",
+          "type": "urn:tag:genre:music",
+          "popularity": 0.9932604854913546
+        },
+        {
+          "id": "urn:tag:music_characteristic:qloo:live",
+          "name": "Live",
+          "type": "urn:tag:music_characteristic:qloo",
+          "popularity": 0.9800547851126373
+        },
+        {
+          "id": "urn:tag:good_for:qloo:live_music",
+          "name": "Live Music",
+          "type": "urn:tag:good_for:qloo",
+          "popularity": 0.9987162315107103
+        },
+        {
+          "id": "urn:tag:amenity:qloo:live_music",
+          "name": "Live Music",
+          "type": "urn:tag:amenity:qloo",
+          "popularity": 0.9998207655306824
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "music live",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "music live"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-91e1e518-300e-4b6b-9b8f-f3ff0486813c",
+        "duration_ms": 1555
+      }
+    },
+    "outdoor": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "outdoor",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:lifestyle:qloo:outdoor",
+          "name": "Outdoor",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.9869429809755413
+        },
+        {
+          "id": "urn:tag:lifestyle:qloo:outdoor_living",
+          "name": "Outdoor Living",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.9964735107634147
+        },
+        {
+          "id": "urn:tag:lifestyle:qloo:outdoors",
+          "name": "Outdoors",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.9838308045459894
+        },
+        {
+          "id": "urn:tag:subgenre:qloo:outdoor",
+          "name": "Outdoor",
+          "type": "urn:tag:subgenre:qloo",
+          "popularity": 0.99098258975115
+        },
+        {
+          "id": "urn:tag:setting:qloo:outdoor",
+          "name": "Outdoor",
+          "type": "urn:tag:setting:qloo",
+          "popularity": 0.9949183650611856
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "outdoor",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "outdoor"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-e2f67208-3e31-4160-909e-fd117a87e699",
+        "duration_ms": 2468
+      }
+    },
+    "picture books": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "picture books",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:genre:qloo:picture_book",
+          "name": "Picture Book",
+          "type": "urn:tag:genre:qloo",
+          "popularity": 0.9799815833048354
+        },
+        {
+          "id": "urn:tag:genre:media:picture_books",
+          "name": "Picture Books",
+          "type": "urn:tag:genre:media",
+          "popularity": 0.9999016645242833
+        },
+        {
+          "id": "urn:tag:subgenre:qloo:picture_book",
+          "name": "Picture Book",
+          "type": "urn:tag:subgenre:qloo",
+          "popularity": 0.9985708368081938
+        },
+        {
+          "id": "urn:tag:interests:qloo:picture_books",
+          "name": "Picture Books",
+          "type": "urn:tag:interests:qloo",
+          "popularity": 0.9927102937921568
+        },
+        {
+          "id": "urn:tag:keyword:qloo:picture_book",
+          "name": "Picture Book",
+          "type": "urn:tag:keyword:qloo",
+          "popularity": 0.9923717716486766
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "picture books",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "picture books"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-65073c6b-e5f7-4041-8222-09c32a41936d",
+        "duration_ms": 1594
+      }
+    },
+    "plush": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "plush",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:decor:qloo:plush",
+          "name": "Plush",
+          "type": "urn:tag:decor:qloo",
+          "popularity": 0.9945193680830379
+        },
+        {
+          "id": "urn:tag:ambience:qloo:plush",
+          "name": "Plush",
+          "type": "urn:tag:ambience:qloo",
+          "popularity": 0.9964061211163181
+        },
+        {
+          "id": "urn:tag:product_service:qloo:plush_toys",
+          "name": "Plush Toys",
+          "type": "urn:tag:product_service:qloo",
+          "popularity": 0.9905652137783396
+        },
+        {
+          "id": "urn:tag:keyword:media:plush_toy",
+          "name": "plush toy",
+          "type": "urn:tag:keyword:media",
+          "popularity": 0.9842504242215381
+        },
+        {
+          "id": "urn:tag:material:qloo:plush",
+          "name": "Plush",
+          "type": "urn:tag:material:qloo",
+          "popularity": 0.9045253640336898
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "plush",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "plush"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-ae5ddb48-5083-4690-b103-78b6cf60e6d5",
+        "duration_ms": 2941
+      }
+    },
+    "stationery": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "stationery",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:amenity:qloo:stationery",
+          "name": "Stationery",
+          "type": "urn:tag:amenity:qloo",
+          "popularity": 0.9957216999219128
+        },
+        {
+          "id": "urn:tag:product_service:qloo:stationery",
+          "name": "Stationery",
+          "type": "urn:tag:product_service:qloo",
+          "popularity": 0.9968485522143311
+        },
+        {
+          "id": "urn:tag:amenity:qloo:stationery_supplies",
+          "name": "Stationery Supplies",
+          "type": "urn:tag:amenity:qloo",
+          "popularity": 0.9941133808035014
+        },
+        {
+          "id": "urn:tag:product_category:qloo:stationery",
+          "name": "Stationery",
+          "type": "urn:tag:product_category:qloo",
+          "popularity": 0.9941754295461661
+        },
+        {
+          "id": "urn:tag:industry:qloo:stationery",
+          "name": "Stationery",
+          "type": "urn:tag:industry:qloo",
+          "popularity": 0.9956852561034364
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "stationery",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "stationery"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-434eb745-e519-4e2f-ba04-edf73bf68032",
+        "duration_ms": 1790
+      }
+    },
+    "streetwear": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "streetwear",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:adjective:qloo:streetwear",
+          "name": "streetwear",
+          "type": "urn:tag:adjective:qloo",
+          "popularity": 0.9790206328727142
+        },
+        {
+          "id": "urn:tag:personal_style:qloo:streetwear",
+          "name": "Streetwear",
+          "type": "urn:tag:personal_style:qloo",
+          "popularity": 0.9973238141660579
+        },
+        {
+          "id": "urn:tag:lifestyle:qloo:streetwear_fashion",
+          "name": "Streetwear Fashion",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.9873129171501626
+        },
+        {
+          "id": "urn:tag:lifestyle:qloo:streetwear",
+          "name": "Streetwear",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.9639053038793973
+        },
+        {
+          "id": "urn:tag:lifestyle:qloo:streetwear_styling",
+          "name": "Streetwear Styling",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.9742337490808539
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "streetwear",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "streetwear"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-d512a2d0-19e6-427e-95c2-5efa1934da9a",
+        "duration_ms": 984
+      }
+    },
+    "traditional market": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "traditional market",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:category:place:traditional_market",
+          "name": "Traditional market",
+          "type": "urn:tag:category:place",
+          "popularity": 0.9996093285493491
+        },
+        {
+          "id": "urn:tag:setting:qloo:traditional_market",
+          "name": "Traditional Market",
+          "type": "urn:tag:setting:qloo",
+          "popularity": 0.9982916960089149
+        },
+        {
+          "id": "urn:tag:genre:place:traditional_market",
+          "name": "Traditional market",
+          "type": "urn:tag:genre:place",
+          "popularity": 0.9996093285493491
+        },
+        {
+          "id": "urn:tag:culture:qloo:traditional_markets",
+          "name": "Traditional Markets",
+          "type": "urn:tag:culture:qloo",
+          "popularity": 0.9639222691052398
+        },
+        {
+          "id": "urn:tag:setting:qloo:traditional_marketplace",
+          "name": "Traditional Marketplace",
+          "type": "urn:tag:setting:qloo",
+          "popularity": 0.9891796417918232
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "traditional market",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "traditional market"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-5bc86b86-f92b-4248-a1a9-fec238699234",
+        "duration_ms": 2636
+      }
+    },
+    "cheese": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "cheese",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:cuisine:qloo:cheese",
+          "name": "Cheese",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9984289101271874
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:cheeses",
+          "name": "Cheeses",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9953617386717454
+        },
+        {
+          "id": "urn:tag:popular_food_item:qloo:cheese",
+          "name": "Cheese",
+          "type": "urn:tag:popular_food_item:qloo",
+          "popularity": 0.9946186460713013
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:artisanal_cheese",
+          "name": "Artisanal Cheese",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9971257294458042
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:cheese_specialty",
+          "name": "Cheese Specialty",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9707158209999022
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "cheese",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "cheese"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-c501f848-07da-4efa-bc23-2787c9a3ed44",
+        "duration_ms": 2190
+      }
+    },
+    "classic snack": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "classic snack",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:decor:qloo:classic_snack_bar",
+          "name": "Classic Snack Bar",
+          "type": "urn:tag:decor:qloo",
+          "popularity": 0.9924529878668789
+        },
+        {
+          "id": "urn:tag:product_service:qloo:traditional_snacks",
+          "name": "Traditional Snacks",
+          "type": "urn:tag:product_service:qloo",
+          "popularity": 0.9462476454858441
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:snack_bar_classics",
+          "name": "Snack Bar Classics",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9075187838823443
+        },
+        {
+          "id": "urn:tag:interests:qloo:classic_snacks",
+          "name": "Classic Snacks",
+          "type": "urn:tag:interests:qloo",
+          "popularity": 0.8796456247075266
+        },
+        {
+          "id": "urn:tag:decor:qloo:classic_snack_bar_style",
+          "name": "Classic Snack Bar Style",
+          "type": "urn:tag:decor:qloo",
+          "popularity": 0.9166118307630754
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "classic snack",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "classic snack"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-dc18a764-7837-4584-8e70-69c339c6f331",
+        "duration_ms": 3210
+      }
+    },
+    "festive": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "festive",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:keyword:qloo:festive",
+          "name": "Festive",
+          "type": "urn:tag:keyword:qloo",
+          "popularity": 0.9939581541774383
+        },
+        {
+          "id": "urn:tag:plot:qloo:festive",
+          "name": "Festive",
+          "type": "urn:tag:plot:qloo",
+          "popularity": 0.9970488361305273
+        },
+        {
+          "id": "urn:tag:lifestyle:qloo:festive_celebrations",
+          "name": "Festive Celebrations",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.9906120252348309
+        },
+        {
+          "id": "urn:tag:aesthetic_property:qloo:festive",
+          "name": "Festive",
+          "type": "urn:tag:aesthetic_property:qloo",
+          "popularity": 0.9853254723597985
+        },
+        {
+          "id": "urn:tag:keyword:qloo:festivity",
+          "name": "Festivity",
+          "type": "urn:tag:keyword:qloo",
+          "popularity": 0.9783509220497272
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "festive",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "festive"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-fd70d11f-ae30-455a-ac37-de881ed08faf",
+        "duration_ms": 2891
+      }
+    },
+    "grilled": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "grilled",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:cuisine:qloo:grilled",
+          "name": "Grilled",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9938284278435171
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:grilled_specialties",
+          "name": "Grilled Specialties",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9974162589383571
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:grilled_food",
+          "name": "Grilled Food",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9962523344857643
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:grill",
+          "name": "Grill",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9995260732743813
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:grilled_cuisine",
+          "name": "Grilled Cuisine",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9833088096804835
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "grilled",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "grilled"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-dedd7510-b701-4663-8fff-e8eceeb3f2f9",
+        "duration_ms": 2543
+      }
+    },
+    "matcha": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "matcha",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:popular_food_item:qloo:matcha",
+          "name": "Matcha",
+          "type": "urn:tag:popular_food_item:qloo",
+          "popularity": 0.9953121782203258
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:matcha",
+          "name": "Matcha",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9924166225911146
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:matcha_specialties",
+          "name": "Matcha Specialties",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.990548562723346
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:matcha_specialty",
+          "name": "Matcha Specialty",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9690013906772628
+        },
+        {
+          "id": "urn:tag:ingredient_focus:qloo:matcha",
+          "name": "Matcha",
+          "type": "urn:tag:ingredient_focus:qloo",
+          "popularity": 0.9802054300347017
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "matcha",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "matcha"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-89c42ab1-0afc-4ebb-9663-9c264049293e",
+        "duration_ms": 2170
+      }
+    },
+    "refreshing": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "refreshing",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:activity_type:qloo:refreshing",
+          "name": "Refreshing",
+          "type": "urn:tag:activity_type:qloo",
+          "popularity": 0.9876999756360507
+        },
+        {
+          "id": "urn:tag:flavor_profile:qloo:refreshing",
+          "name": "Refreshing",
+          "type": "urn:tag:flavor_profile:qloo",
+          "popularity": 0.9969629104033435
+        },
+        {
+          "id": "urn:tag:ambience:qloo:refreshing",
+          "name": "Refreshing",
+          "type": "urn:tag:ambience:qloo",
+          "popularity": 0.9994735281998969
+        },
+        {
+          "id": "urn:tag:critical_descriptor:qloo:refreshing",
+          "name": "Refreshing",
+          "type": "urn:tag:critical_descriptor:qloo",
+          "popularity": 0.9751107570056565
+        },
+        {
+          "id": "urn:tag:style:qloo:refreshing",
+          "name": "Refreshing",
+          "type": "urn:tag:style:qloo",
+          "popularity": 0.9211131921439066
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "refreshing",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "refreshing"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-52c6fc5c-8da4-4208-b4fb-6320e7b5aafc",
+        "duration_ms": 3430
+      }
+    },
+    "spicy": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "spicy",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:cuisine:qloo:spicy",
+          "name": "Spicy",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.964185701362072
+        },
+        {
+          "id": "urn:tag:flavor_profile:qloo:spicy",
+          "name": "Spicy",
+          "type": "urn:tag:flavor_profile:qloo",
+          "popularity": 0.9972001093942896
+        },
+        {
+          "id": "urn:tag:amenity:qloo:spicy_condiments",
+          "name": "Spicy Condiments",
+          "type": "urn:tag:amenity:qloo",
+          "popularity": 0.9850702870877509
+        },
+        {
+          "id": "urn:tag:genre:media:spicy",
+          "name": "Spicy",
+          "type": "urn:tag:genre:media",
+          "popularity": 0.9993948284022386
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:spicy_cuisine",
+          "name": "Spicy Cuisine",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9758266738276675
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "spicy",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "spicy"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-af543e55-1d57-4289-b1b6-97d46bfcf42b",
+        "duration_ms": 1253
+      }
+    },
+    "sweet": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "sweet",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:style:qloo:sweet",
+          "name": "Sweet",
+          "type": "urn:tag:style:qloo",
+          "popularity": 0.9829611796361367
+        },
+        {
+          "id": "urn:tag:character:qloo:sweet",
+          "name": "Sweet",
+          "type": "urn:tag:character:qloo",
+          "popularity": 0.9948345599872321
+        },
+        {
+          "id": "urn:tag:keyword:media:sweet",
+          "name": "sweet",
+          "type": "urn:tag:keyword:media",
+          "popularity": 0.97055733960787
+        },
+        {
+          "id": "urn:tag:flavor_profile:qloo:sweet",
+          "name": "Sweet",
+          "type": "urn:tag:flavor_profile:qloo",
+          "popularity": 0.999069111774605
+        },
+        {
+          "id": "urn:tag:ambience:qloo:sweet",
+          "name": "Sweet",
+          "type": "urn:tag:ambience:qloo",
+          "popularity": 0.9980662784248039
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "sweet",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "sweet"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-c57dceb4-3a30-4566-affb-072c4e6fb05b",
+        "duration_ms": 1208
+      }
+    },
+    "tea": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "tea",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:cuisine:qloo:tea",
+          "name": "Tea",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9989784734846873
+        },
+        {
+          "id": "urn:tag:popular_food_item:qloo:tea",
+          "name": "Tea",
+          "type": "urn:tag:popular_food_item:qloo",
+          "popularity": 0.9876884298573523
+        },
+        {
+          "id": "urn:tag:product_category:qloo:tea",
+          "name": "Tea",
+          "type": "urn:tag:product_category:qloo",
+          "popularity": 0.9905980446320534
+        },
+        {
+          "id": "urn:tag:amenity:qloo:tea",
+          "name": "Tea",
+          "type": "urn:tag:amenity:qloo",
+          "popularity": 0.9974043204460975
+        },
+        {
+          "id": "urn:tag:keyword:qloo:tea",
+          "name": "Tea",
+          "type": "urn:tag:keyword:qloo",
+          "popularity": 0.9888484987293421
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "tea",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "tea"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-3e34f31a-3bb5-4c3b-aaac-faf50b760d7d",
+        "duration_ms": 721
+      }
+    },
+    "traditional": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "traditional",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:characteristic:qloo:traditional",
+          "name": "Traditional",
+          "type": "urn:tag:characteristic:qloo",
+          "popularity": 0.9997606803558237
+        },
+        {
+          "id": "urn:tag:adjective:qloo:traditional",
+          "name": "traditional",
+          "type": "urn:tag:adjective:qloo",
+          "popularity": 0.9940394934064387
+        },
+        {
+          "id": "urn:tag:style:qloo:traditional",
+          "name": "Traditional",
+          "type": "urn:tag:style:qloo",
+          "popularity": 0.9987487360514034
+        },
+        {
+          "id": "urn:tag:culture:qloo:traditionalist",
+          "name": "traditionalist",
+          "type": "urn:tag:culture:qloo",
+          "popularity": 0.9978673297347157
+        },
+        {
+          "id": "urn:tag:lifestyle:qloo:traditional",
+          "name": "Traditional",
+          "type": "urn:tag:lifestyle:qloo",
+          "popularity": 0.9771774513926644
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "traditional",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "traditional"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-3589869f-8d01-4c2c-943f-6356f2fd32b4",
+        "duration_ms": 3215
+      }
+    },
+    "tropical fruit": {
+      "schema_version": "1.0-preview.1",
+      "operation": "find_tags",
+      "status": "ok",
+      "interpretation": {
+        "query": "tropical fruit",
+        "semantic": true
+      },
+      "results": [
+        {
+          "id": "urn:tag:interests:qloo:tropical_fruit",
+          "name": "Tropical Fruit",
+          "type": "urn:tag:interests:qloo",
+          "popularity": 0.9966346018662062
+        },
+        {
+          "id": "urn:tag:interests:qloo:tropical_fruits",
+          "name": "Tropical Fruits",
+          "type": "urn:tag:interests:qloo",
+          "popularity": 0.992397929425603
+        },
+        {
+          "id": "urn:tag:cuisine:qloo:tropical_fruit",
+          "name": "Tropical Fruit",
+          "type": "urn:tag:cuisine:qloo",
+          "popularity": 0.9657668447020505
+        },
+        {
+          "id": "urn:tag:popular_food_item:qloo:tropical_fruit",
+          "name": "Tropical Fruit",
+          "type": "urn:tag:popular_food_item:qloo",
+          "popularity": 0.9517297697143385
+        },
+        {
+          "id": "urn:tag:interests:qloo:tropical_fruit_flavors",
+          "name": "Tropical Fruit Flavors",
+          "type": "urn:tag:interests:qloo",
+          "popularity": 0.9768397962727713
+        }
+      ],
+      "result_count": 5,
+      "provenance": {
+        "source": "Qloo API",
+        "endpoint": "/v2/tags",
+        "documentation": "https://docs.qloo.com/reference/get-tags",
+        "requests": [
+          {
+            "method": "GET",
+            "path": "/v2/tags",
+            "query": {
+              "filter.query": "tropical fruit",
+              "feature.semantic_search": true,
+              "take": 5
+            }
+          }
+        ],
+        "transport": "direct"
+      },
+      "query_intent": {
+        "schema_version": "1.0-preview.1",
+        "source_contract_version": "1.0.0",
+        "operation": "find_tags",
+        "job": "find_tags",
+        "signals": {},
+        "filters": {},
+        "operators": {},
+        "output": {
+          "limit": 5
+        },
+        "assumptions": [
+          "semantic=true"
+        ],
+        "unresolved": [],
+        "target": {
+          "concept": "tropical fruit"
+        }
+      },
+      "execution": {
+        "transport": "direct",
+        "transport_name": "Qloo API",
+        "correlation_id": "exec-7580c045-166f-4751-adbb-76bce8fdb4cc",
+        "duration_ms": 2699
+      }
+    }
+  },
+  "confirmed": {
+    "anime": "urn:tag:genre:qloo:anime",
+    "collectibles": "urn:tag:interests:qloo:collectibles",
+    "cosplay": "urn:tag:interests:qloo:cosplay",
+    "crafts": "urn:tag:genre:qloo:crafts",
+    "eco": "urn:tag:ambience:qloo:ecological",
+    "family": "urn:tag:genre:qloo:family",
+    "gaming": "urn:tag:genre:qloo:gaming",
+    "gifting": "urn:tag:lifestyle:qloo:gift_giving",
+    "j-pop": "urn:tag:genre:music:j_pop",
+    "jpop": "urn:tag:genre:music:jpop",
+    "kawaii": "urn:tag:decor:qloo:kawaii",
+    "kids": "urn:tag:subgenre:qloo:kids",
+    "local culture": "urn:tag:cultural_relevance:qloo:local_culture",
+    "lunar new year": "urn:tag:culture:qloo:chinese_new_year",
+    "music live": "urn:tag:music:qloo:live",
+    "outdoor": "urn:tag:lifestyle:qloo:outdoor",
+    "picture books": "urn:tag:genre:qloo:picture_book",
+    "plush": "urn:tag:decor:qloo:plush",
+    "stationery": "urn:tag:product_category:qloo:stationery",
+    "streetwear": "urn:tag:personal_style:qloo:streetwear",
+    "traditional market": "urn:tag:setting:qloo:traditional_market",
+    "cheese": "urn:tag:cuisine:qloo:cheese",
+    "classic snack": "urn:tag:interests:qloo:classic_snacks",
+    "festive": "urn:tag:keyword:qloo:festive",
+    "grilled": "urn:tag:cuisine:qloo:grilled",
+    "matcha": "urn:tag:popular_food_item:qloo:matcha",
+    "refreshing": "urn:tag:flavor_profile:qloo:refreshing",
+    "spicy": "urn:tag:flavor_profile:qloo:spicy",
+    "sweet": "urn:tag:flavor_profile:qloo:sweet",
+    "tea": "urn:tag:popular_food_item:qloo:tea",
+    "traditional": "urn:tag:characteristic:qloo:traditional",
+    "tropical fruit": "urn:tag:popular_food_item:qloo:tropical_fruit"
+  }
+}

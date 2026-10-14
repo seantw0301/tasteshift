@@ -61,7 +61,7 @@ Not built from the spec: catalog import, `/api/qloo/affinity`, `/api/forecast/de
 
 - Mock mode: affinities are hand-written synthetic values with `mock:` ids. They are not Qloo data.
 - The hidden environment assumes affinity moves demand, so the ablation shows the mechanism, not real-world lift.
-- Live Qloo: only the harness runner, result envelope and `find_tags` are wired (the parts the hackathon kit documents). Affinity is still synthetic; `rank` waits on checking its input schema with `qloo exec --help`.
+- Live Qloo: `find_tags` (tag resolution) and `recommend` (one call per event over all seed-concept tags plus location) are wired. Recommend output is shown as evidence only. Stock decisions still use the synthetic culture profile. `rank` is not used: it ranks named entities, not concepts.
 - Catalog, prices, reach and conversion are assumptions, not measurements.
 
 ## Live Qloo setup
@@ -75,6 +75,6 @@ qloo setup --status      # expect "Qloo data: ready"
 scripts/qloo_resolve_tags.sh
 ```
 
-The backend defaults `QLOO_BASE_URL` to `https://hackathon.api.qloo.com`. The resolver saves tag candidates for review; a candidate is not a confirmed match, and no ID is used until one tag per concept is confirmed.
+The backend defaults `QLOO_BASE_URL` to `https://hackathon.api.qloo.com`. The resolver saves tag candidates for review; a candidate is not a confirmed match. Only URNs listed under `confirmed` in `backend/app/fixtures/qloo_tag_candidates.json` are used.
 
 Submission needs (kit `docs/SUBMISSION.md`): problem statement, workflows used and why, redacted request-to-result walkthrough with tag choices, demo/screenshots without credentials, clean-environment setup steps, known limitations.

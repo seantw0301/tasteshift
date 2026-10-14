@@ -29,8 +29,12 @@ def main() -> int:
     if failed == len(out):
         print("No live results; nothing written.")
         return 1
+    # Merge into the existing file so owner-confirmed URNs survive a re-run.
+    prev = json.loads(OUT.read_text()) if OUT.exists() else {}
+    merged = {**prev.get("candidates", {}), **{k: v for k, v in out.items() if v.get("status") == "ok"}}
     OUT.write_text(json.dumps({"origin": "qloo_live", "fetched_at": datetime.now(timezone.utc).isoformat(),
-                               "reviewed": False, "candidates": out}, indent=2))
+                               "reviewed": prev.get("reviewed", False), "confirmed": prev.get("confirmed", {}),
+                               "candidates": merged}, indent=2, ensure_ascii=False))
     print(f"Wrote {OUT}. Review and confirm one tag per concept before using any ID.")
     return 0
 

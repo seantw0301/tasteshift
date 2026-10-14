@@ -40,6 +40,15 @@ def analyze(req: PlanRequest):
     return {"event": event, "event_dna": qloo_gateway.event_dna(event), "qloo_mode": qloo_gateway.mode()[0]}
 
 
+@app.post("/api/qloo/recommend")
+def qloo_recommend(req: PlanRequest):
+    try:
+        event = get_event(req.event_id)
+    except KeyError:
+        raise HTTPException(404, "unknown event")
+    return qloo_gateway.recommend(event)
+
+
 @app.post("/api/optimize/stock")
 def optimize(req: PlanRequest):
     return _guard(pipeline.make_plan, req)
