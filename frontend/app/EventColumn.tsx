@@ -1,3 +1,4 @@
+import QlooRecommend from "./QlooRecommend";
 import type { EventInfo, EventResult, SkuPlan } from "./types";
 
 const nt = (n: number) => "NT$" + Math.round(n).toLocaleString();
@@ -29,13 +30,16 @@ export default function EventColumn({ event, r, qlooOn, onAudit }: {
         <span className="text-sm text-stone-500">{plan.attendance.toLocaleString()} attendees</span>
       </div>
 
+      {qlooOn && <div className="mt-3 text-xs font-medium uppercase tracking-wide text-stone-500">Synthetic culture profile · drives stock</div>}
       <div className="mt-3 flex min-h-14 flex-wrap content-start gap-1.5">
         {qlooOn ? plan.event_dna.slice(0, 8).map((e) => (
           <span key={e.id} title={`${e.id} · ${e.origin}`} className="rounded-full bg-teal-50 px-2 py-0.5 text-xs text-teal-800">
             {e.tag.replace("_", " ")} {e.affinity?.toFixed(2)}
           </span>
-        )) : <span className="text-xs text-stone-400">Qloo off: event culture is not used, only crowd size and catalog.</span>}
+        )) : <span className="text-xs text-stone-400">Qloo off: no culture profile; stock uses crowd size and catalog only.</span>}
       </div>
+
+      {qlooOn && <div className="mt-4"><QlooRecommend eventId={event.id} /></div>}
 
       <table className="mt-4 w-full text-sm">
         <thead className="text-left text-xs text-stone-500">
@@ -61,7 +65,7 @@ export default function EventColumn({ event, r, qlooOn, onAudit }: {
           })}
         </tbody>
       </table>
-      <p className="mt-2 text-xs text-stone-400">Coloured number = difference vs Qloo {qlooOn ? "off" : "on"}. * = some concept tags have no evidence.</p>
+      <p className="mt-2 text-xs text-stone-400">Simulated demand and profit. Culture profile is synthetic and drives stock. Coloured number = difference vs Qloo {qlooOn ? "off" : "on"}. * = some concept tags have no evidence.</p>
 
       <div className="mt-4 flex items-center justify-between rounded-lg bg-stone-50 px-3 py-2 text-sm">
         <span>Spend <b>{nt(plan.total_cost)}</b> of {nt(plan.budget)}</span>

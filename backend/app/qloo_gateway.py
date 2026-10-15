@@ -10,6 +10,7 @@ Affinity stays synthetic until the `rank` input schema is checked against `qloo 
 """
 import json
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -67,9 +68,41 @@ def find_tags(query: str, limit: int = 5) -> dict:
     return run_workflow("find_tags", {"query": query, "limit": limit})
 
 
+RECOMMEND_TARGET = "movie"  # one target type per call; affinity is only comparable within one call
+NON_LATIN_NAME = re.compile(r"[\u3000-\u9fff\uac00-\ud7af\uff00-\uffef]")  # CJK, Hangul, fullwidth forms
+CANDIDATES = FIXTURES / "qloo_tag_candidates.json"
+_REC_CACHE: Dict[str, dict] = {}
+
+
+def _concept_urns(concepts: List[str]) -> List[str]:
+    """Owner-confirmed URN per concept. Concepts without a confirmed URN are skipped, never guessed."""
+    try:
+        confirmed = json.loads(CANDIDATES.read_text()).get("confirmed", {})
+    except (OSError, ValueError):
+        return []
+    return [confirmed[c] for c in concepts if c in confirmed]
+
+
+def recommend(event: Event) -> dict:
+    """One recommend call over all of the event's concept tags and its location. Ok results are cached per event."""
+    if event.id in _REC_CACHE:
+        return _REC_CACHE[event.id]
+    urns = _concept_urns(event.seed_concepts)
+    if not urns:
+        return _error("NO_TAGS", f"no tag URNs for {event.id}; run scripts/qloo_resolve_tags.sh")
+    env = run_workflow("recommend", {"target_type": RECOMMEND_TARGET, "signal_tags": urns,
+                                     "signal_location": event.geo, "limit": 20})
+    if env.get("status") == "ok":
+        # Demo output is English-only: drop entities whose names use CJK, Kana or Hangul scripts.
+        env["results"] = [r for r in env.get("results", []) if not NON_LATIN_NAME.search(r.get("name", ""))][:10]
+        env["result_count"] = len(env["results"])
+        _REC_CACHE[event.id] = env
+    return env
+
+
 def mode() -> Tuple[str, Optional[str]]:
     if harness_installed():
-        return "mock", "Qloo harness found, but affinity is still the synthetic fixture until the rank workflow is wired"
+        return "mock", "Qloo harness found. Recommend is shown as evidence; the culture profile that drives stock is synthetic"
     return "mock", None
 
 
