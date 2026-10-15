@@ -50,13 +50,13 @@ def qloo_recommend(req: PlanRequest):
 
 
 @app.post("/api/agent/stock")
-def agent_stock(req: PlanRequest):
+def agent_stock(req: PlanRequest, grounded: bool = True):
     """Qloo-grounded agent: the LLM scores SKU fit from Qloo evidence, and the planner uses that fit."""
     try:
         event = get_event(req.event_id)
     except KeyError:
         raise HTTPException(404, "unknown event")
-    rec = qloo_gateway.recommend(event)
+    rec = qloo_gateway.recommend(event) if grounded else {"status": "skipped"}
     evidence = [{"name": r["name"], "affinity": r.get("affinity") or 0.0}
                 for r in rec.get("results", [])] if rec.get("status") == "ok" else []
     try:
