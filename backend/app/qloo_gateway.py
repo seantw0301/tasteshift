@@ -69,7 +69,7 @@ def find_tags(query: str, limit: int = 5) -> dict:
 
 
 RECOMMEND_TARGET = "movie"  # one target type per call; affinity is only comparable within one call
-NON_LATIN_NAME = re.compile(r"[　-鿿가-힯＀-￯]")  # CJK, Hangul, fullwidth forms
+NON_LATIN_NAME = re.compile(r"[\u3000-\u9fff\uac00-\ud7af\uff00-\uffef]")  # CJK, Hangul, fullwidth forms
 CANDIDATES = FIXTURES / "qloo_tag_candidates.json"
 _REC_CACHE: Dict[str, dict] = {}
 
@@ -102,7 +102,7 @@ def recommend(event: Event) -> dict:
 
 def mode() -> Tuple[str, Optional[str]]:
     if harness_installed():
-        return "mock", "Qloo harness found, but affinity is still the synthetic fixture until the rank workflow is wired"
+        return "mock", "Qloo harness found. Recommend is shown as evidence; the culture profile that drives stock is synthetic"
     return "mock", None
 
 
