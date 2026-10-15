@@ -51,3 +51,20 @@ def test_agent_endpoint_uses_fit_in_planner(monkeypatch):
     statuses = {row["sku_id"]: row["affinity_status"] for row in body["plan"]["skus"]}
     assert statuses[merchant.skus[0].id] == "agent_fit"
     assert body["reasons"][merchant.skus[0].id] == "r"
+
+
+def test_agent_eval_returns_both_arms(monkeypatch):
+    merchant = load_merchant()
+    calls = []
+    def fake(messages, timeout=60):
+        calls.append("Kingdom" in messages[1]["content"])
+        return {"scores": [{"sku_id": s.id, "fit": 0.5, "reason": "r"} for s in merchant.skus]}
+    monkeypatch.setattr(llm, "chat_json", fake)
+    monkeypatch.setattr(main.qloo_gateway, "recommend", lambda ev: {"status": "ok", "results": [
+        {"name": "Kingdom", "affinity": 0.9}]})
+    client = TestClient(main.app)
+    r = client.post("/api/evaluation/agent", json={"event_id": "evt_anime_music"})
+    assert r.status_code == 200
+    body = r.json()
+    assert set(body) >= {"grounded", "ungrounded", "delta_profit", "grounded_win_rate", "environment"}
+    assert calls == [True, False]

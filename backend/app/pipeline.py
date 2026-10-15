@@ -226,3 +226,26 @@ def replan(req: PlanRequest) -> dict:
                             "demand_p50_before": b.demand_p50, "demand_p50_after": a.demand_p50})
     return {"before": before, "after": after, "changes": changes, "why": after.scenario_notes,
             "profit_change": round(after.expected_profit - before.expected_profit, 0)}
+
+
+def agent_ablation(req: PlanRequest, planner_grounded: dict, planner_ungrounded: dict) -> dict:
+    """Two agent arms (Qloo-grounded vs no evidence) scored against the same hidden environments."""
+    base = req.model_copy(update={"qloo_on": True})
+    arms = {"grounded": planner_grounded, "ungrounded": planner_ungrounded}
+    plans = {k: make_plan(base, planner_aff=v) for k, v in arms.items()}
+    skus = load_merchant(req.merchant_id).skus
+    stock = {k: {r.sku_id: r.stock_qty for r in p.skus} for k, p in plans.items()}
+    runs = {k: [] for k in arms}
+    for i in range(engine.N_ENVIRONMENTS):
+        hidden = hidden_demand(base, i)
+        for k in arms:
+            runs[k].append(engine.evaluate(skus, stock[k], hidden))
+    diffs = [a["expected_profit"] - b["expected_profit"] for a, b in zip(runs["grounded"], runs["ungrounded"])]
+    mean = {k: {m: round(float(np.mean([r[m] for r in runs[k]])), 3) for m in runs[k][0]} for k in arms}
+    return {
+        "event_id": req.event_id, "seed": req.seed, "grounded": mean["grounded"], "ungrounded": mean["ungrounded"],
+        "stock": stock, "delta_profit": round(mean["grounded"]["expected_profit"] - mean["ungrounded"]["expected_profit"], 2),
+        "grounded_win_rate": round(float(np.mean([d > 0 for d in diffs])), 2),
+        "changed_skus": [s.id for s in skus if stock["grounded"][s.id] != stock["ungrounded"][s.id]],
+        "n_environments": engine.N_ENVIRONMENTS, "environment": "synthetic",
+    }
