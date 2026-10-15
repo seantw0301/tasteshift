@@ -1,3 +1,4 @@
+import AgentPanel from "./AgentPanel";
 import QlooRecommend from "./QlooRecommend";
 import type { EventInfo, EventResult, SkuPlan } from "./types";
 
@@ -40,6 +41,7 @@ export default function EventColumn({ event, r, qlooOn, onAudit }: {
       </div>
 
       {qlooOn && <div className="mt-4"><QlooRecommend eventId={event.id} /></div>}
+      {qlooOn && <div className="mt-4"><AgentPanel eventId={event.id} /></div>}
 
       <table className="mt-4 w-full text-sm">
         <thead className="text-left text-xs text-stone-500">

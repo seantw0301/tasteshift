@@ -66,13 +66,15 @@ def _ingredients(merchant: Merchant, qty: Dict[str, int]) -> List[IngredientNeed
 
 
 def build_demand(req: PlanRequest, aff_override: Optional[Dict[str, Optional[float]]] = None,
-                 beta: Optional[float] = None, seed: Optional[int] = None):
+                 beta: Optional[float] = None, seed: Optional[int] = None, planner_aff: Optional[dict] = None):
     """Shared demand construction for planning and for hidden-environment evaluation."""
     merchant, event = load_merchant(req.merchant_id), get_event(req.event_id)
     skus, att_mult, sku_mult, notes = _apply_scenario(merchant, req.scenario)
     attendance = req.attendance or event.attendance
     dna = qloo_gateway.event_dna(event)
     aff_full = {s.id: engine.sku_affinity(s, dna) for s in skus}
+    if planner_aff is not None:
+        aff_full = {s.id: planner_aff.get(s.id, (None, "unknown", [])) for s in skus}
     aff = aff_override if aff_override is not None else {
         k: (v[0] if req.qloo_on else None) for k, v in aff_full.items()}
     if req.weight_overrides:
@@ -90,8 +92,8 @@ def build_demand(req: PlanRequest, aff_override: Optional[Dict[str, Optional[flo
     return merchant, event, skus, attendance, dna, aff_full, demand, notes, cap_note
 
 
-def make_plan(req: PlanRequest) -> Plan:
-    merchant, event, skus, attendance, dna, aff_full, demand, notes, cap_note = build_demand(req)
+def make_plan(req: PlanRequest, planner_aff: Optional[dict] = None) -> Plan:
+    merchant, event, skus, attendance, dna, aff_full, demand, notes, cap_note = build_demand(req, planner_aff=planner_aff)
     budget = req.budget if req.budget is not None else merchant.budget
     qmode, fallback = qloo_gateway.mode()
     blocked = _blocked(merchant)
@@ -115,7 +117,7 @@ def make_plan(req: PlanRequest) -> Plan:
 
     sc = req.scenario.model_dump() if req.scenario else None
     key = json.dumps([event.id, merchant.id, attendance, budget, req.qloo_on, req.seed, req.risk, sc,
-                      sorted(req.weight_overrides.items()), engine.MODEL_VERSION, qmode])
+                      sorted(req.weight_overrides.items()), engine.MODEL_VERSION, qmode, planner_aff is not None])
     decision_id = "dec_" + hashlib.sha256(key.encode()).hexdigest()[:12]
     plan = Plan(
         decision_id=decision_id, event_id=event.id, merchant_id=merchant.id, risk=req.risk,

@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from fastapi.responses import PlainTextResponse
 
-from . import p2, pipeline, qloo_gateway
+from . import agent, llm, p2, pipeline, qloo_gateway
 from .models import AblationRequest, PlanRequest
 from .store import TRACES, get_event, load_events, load_merchant, load_merchants
 
@@ -47,6 +47,25 @@ def qloo_recommend(req: PlanRequest):
     except KeyError:
         raise HTTPException(404, "unknown event")
     return qloo_gateway.recommend(event)
+
+
+@app.post("/api/agent/stock")
+def agent_stock(req: PlanRequest):
+    """Qloo-grounded agent: the LLM scores SKU fit from Qloo evidence, and the planner uses that fit."""
+    try:
+        event = get_event(req.event_id)
+    except KeyError:
+        raise HTTPException(404, "unknown event")
+    rec = qloo_gateway.recommend(event)
+    evidence = [{"name": r["name"], "affinity": r.get("affinity") or 0.0}
+                for r in rec.get("results", [])] if rec.get("status") == "ok" else []
+    try:
+        scores = agent.fit_scores(event, load_merchant(req.merchant_id).skus, evidence)
+    except llm.LLMUnavailable as e:
+        raise HTTPException(503, str(e))
+    plan = pipeline.make_plan(req.model_copy(update={"qloo_on": True}), planner_aff=agent.planner_affinity(scores))
+    return {"plan": plan, "reasons": {sid: v["reason"] for sid, v in scores.items()},
+            "evidence_films": [e["name"] for e in evidence]}
 
 
 @app.post("/api/optimize/stock")
