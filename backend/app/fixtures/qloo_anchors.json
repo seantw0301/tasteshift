@@ -1,5 +1,5 @@
 {
-  "_note": "ASSUMPTION TABLE, owner review required. Anchors are films that the Taipei rank call actually scores (rank silently drops films outside the location's affinity set). Each event's rank call scores its anchors plus a fixed reference panel; scores are min-max normalized within that call. Concepts without an anchor stay unknown.",
+  "_note": "ASSUMPTION TABLE, owner review required. Built by a documented rule: candidate films come from Taipei recommend calls and are kept only if the Taipei rank call scores them; each concept takes the scored film whose Qloo description has the most whole-word keyword hits (ties by popularity). Known false positives are listed in docs/qloo-mapping-design.md. Each event's rank call scores its anchors plus a fixed reference panel; scores are min-max normalized within the call. Concepts without an anchor stay unknown.",
   "reference_panel": [
     {
       "entity_id": "3883FFEE-A1B5-4B2F-966F-C307831447A0",
@@ -22,25 +22,30 @@
     "evt_anime_music": [
       {
         "concept": "anime",
-        "entity_id": "D380D026-ADDE-4644-AD34-4EBCCCAED805",
-        "name": "Spy x Family Code: White"
+        "entity_id": "39EA4E64-A058-4714-9F89-99ED5FD7E073",
+        "name": "Sound! Euphonium the Movie - Our Promise: A Brand New Day"
       },
       {
-        "concept": "gaming",
-        "entity_id": "BC6FC94F-845E-41D1-B8B3-4219E80AF339",
-        "name": "Ready Player One"
+        "concept": "music_live",
+        "entity_id": "5205D577-873C-4842-89E2-70A014B28265",
+        "name": "Cold War"
       }
     ],
     "evt_family_fair": [
       {
         "concept": "family",
-        "entity_id": "B09B5FBC-9172-4780-A6C1-8BF8CBC91A12",
-        "name": "Toy Story 4"
+        "entity_id": "68CED2D7-20FA-44A7-9953-5A3BB469F97D",
+        "name": "Mary Poppins Returns"
       },
       {
         "concept": "kids",
-        "entity_id": "3E2E8308-8675-40A0-AEDF-505C718A274E",
-        "name": "Aladdin (2019)"
+        "entity_id": "95EA4C15-F674-4F48-835E-7E32DC0B890A",
+        "name": "Kids on the Slope"
+      },
+      {
+        "concept": "eco",
+        "entity_id": "C627E7C8-28A3-4258-9F46-82EA62247AA3",
+        "name": "Kim Ji-young: Born 1982"
       }
     ],
     "evt_lunar_market": []
