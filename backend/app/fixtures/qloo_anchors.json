@@ -1,0 +1,48 @@
+{
+  "_note": "ASSUMPTION TABLE, owner review required. Anchors are films that the Taipei rank call actually scores (rank silently drops films outside the location's affinity set). Each event's rank call scores its anchors plus a fixed reference panel; scores are min-max normalized within that call. Concepts without an anchor stay unknown.",
+  "reference_panel": [
+    {
+      "entity_id": "3883FFEE-A1B5-4B2F-966F-C307831447A0",
+      "name": "Kingdom"
+    },
+    {
+      "entity_id": "927FE6F9-FB91-4491-B6EC-1D6D911B9BA5",
+      "name": "Cherry Magic! Thirty Years of Virginity Can Make You a Wizard?!: The Movie"
+    },
+    {
+      "entity_id": "A96C5BD5-0064-4F3A-BE94-F57B55D627C2",
+      "name": "Till We Meet Again"
+    },
+    {
+      "entity_id": "A1BC86FC-06DF-47C7-9767-659C31B245EE",
+      "name": "Café Funiculi Funicula"
+    }
+  ],
+  "events": {
+    "evt_anime_music": [
+      {
+        "concept": "anime",
+        "entity_id": "D380D026-ADDE-4644-AD34-4EBCCCAED805",
+        "name": "Spy x Family Code: White"
+      },
+      {
+        "concept": "gaming",
+        "entity_id": "BC6FC94F-845E-41D1-B8B3-4219E80AF339",
+        "name": "Ready Player One"
+      }
+    ],
+    "evt_family_fair": [
+      {
+        "concept": "family",
+        "entity_id": "B09B5FBC-9172-4780-A6C1-8BF8CBC91A12",
+        "name": "Toy Story 4"
+      },
+      {
+        "concept": "kids",
+        "entity_id": "3E2E8308-8675-40A0-AEDF-505C718A274E",
+        "name": "Aladdin (2019)"
+      }
+    ],
+    "evt_lunar_market": []
+  }
+}

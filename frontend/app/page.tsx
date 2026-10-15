@@ -70,7 +70,7 @@ export default function Home() {
 
       {mode === "mock" && (
         <p className="mt-4 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-900">
-          Qloo recommendations shown as live evidence. Stock decisions use a synthetic culture profile, and all demand and profit figures are simulated.
+          Qloo recommendations shown as live evidence. Stock decisions use Qloo rank anchors where available (partial coverage). Demand, profit and the evaluation environment are simulated.
         </p>
       )}
       {error && <p className="mt-4 rounded-md bg-rose-50 px-3 py-2 text-sm text-rose-800">{error}</p>}

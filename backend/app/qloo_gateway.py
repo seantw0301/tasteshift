@@ -100,9 +100,53 @@ def recommend(event: Event) -> dict:
     return env
 
 
+ANCHORS = FIXTURES / "qloo_anchors.json"
+_ANCHOR_CACHE: Dict[str, List[QlooEvidence]] = {}
+
+
+def anchor_evidence(event: Event) -> List[QlooEvidence]:
+    """Concept affinities from one rank call: the event's anchors plus a fixed reference panel.
+
+    Rank scores are min-max normalized across the whole call, so they are relative to this panel,
+    not absolute Qloo confidence. Concepts without an anchor are omitted (unknown, not zero).
+    """
+    if event.id in _ANCHOR_CACHE:
+        return _ANCHOR_CACHE[event.id]
+    try:
+        table = json.loads(ANCHORS.read_text())
+    except (OSError, ValueError):
+        return []
+    anchors = table.get("events", {}).get(event.id, [])
+    if not anchors:
+        return []
+    panel = table.get("reference_panel", [])
+    options = list(dict.fromkeys([a["entity_id"] for a in anchors] + [p["entity_id"] for p in panel]))
+    env = run_workflow("rank", {"options": options, "option_type": "movie", "signal_location": event.geo})
+    if env.get("status") != "ok":
+        return []
+    scores = {r["entity_id"]: r.get("affinity") for r in env.get("results", []) if r.get("affinity") is not None}
+    if len(scores) < 2:
+        return []
+    lo, hi = min(scores.values()), max(scores.values())
+    out = []
+    for a in anchors:
+        raw = scores.get(a["entity_id"])
+        if raw is None:
+            continue
+        norm = 0.5 if hi == lo else (raw - lo) / (hi - lo)
+        out.append(QlooEvidence(
+            id=f"qloo:rank:{event.id}:{a['concept']}", tag_id=a["entity_id"], tag=a["concept"],
+            affinity=round(norm, 4), origin="qloo_live", query_id=f"qloo:rank:{event.id}",
+            note=f"anchor {a['name']}; min-max within call",
+        ))
+    _ANCHOR_CACHE[event.id] = out
+    return out
+
+
+
 def mode() -> Tuple[str, Optional[str]]:
     if harness_installed():
-        return "mock", "Qloo harness found. Recommend is shown as evidence; the culture profile that drives stock is synthetic"
+        return "mock", "Concept affinity uses Qloo rank anchors (partial coverage). The evaluation environment is synthetic"
     return "mock", None
 
 

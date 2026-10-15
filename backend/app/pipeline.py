@@ -71,7 +71,7 @@ def build_demand(req: PlanRequest, aff_override: Optional[Dict[str, Optional[flo
     merchant, event = load_merchant(req.merchant_id), get_event(req.event_id)
     skus, att_mult, sku_mult, notes = _apply_scenario(merchant, req.scenario)
     attendance = req.attendance or event.attendance
-    dna = qloo_gateway.event_dna(event)
+    dna = qloo_gateway.anchor_evidence(event) if req.qloo_on else []
     aff_full = {s.id: engine.sku_affinity(s, dna) for s in skus}
     aff = aff_override if aff_override is not None else {
         k: (v[0] if req.qloo_on else None) for k, v in aff_full.items()}

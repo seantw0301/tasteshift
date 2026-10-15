@@ -30,7 +30,7 @@ export default function EventColumn({ event, r, qlooOn, onAudit }: {
         <span className="text-sm text-stone-500">{plan.attendance.toLocaleString()} attendees</span>
       </div>
 
-      {qlooOn && <div className="mt-3 text-xs font-medium uppercase tracking-wide text-stone-500">Synthetic culture profile · drives stock</div>}
+      {qlooOn && <div className="mt-3 text-xs font-medium uppercase tracking-wide text-stone-500">Qloo rank anchors · drives stock (partial coverage)</div>}
       <div className="mt-3 flex min-h-14 flex-wrap content-start gap-1.5">
         {qlooOn ? plan.event_dna.slice(0, 8).map((e) => (
           <span key={e.id} title={`${e.id} · ${e.origin}`} className="rounded-full bg-teal-50 px-2 py-0.5 text-xs text-teal-800">
@@ -65,7 +65,7 @@ export default function EventColumn({ event, r, qlooOn, onAudit }: {
           })}
         </tbody>
       </table>
-      <p className="mt-2 text-xs text-stone-400">Simulated demand and profit. Culture profile is synthetic and drives stock. Coloured number = difference vs Qloo {qlooOn ? "off" : "on"}. * = some concept tags have no evidence.</p>
+      <p className="mt-2 text-xs text-stone-400">Simulated demand and profit. Concept affinity comes from Qloo rank anchors; unanchored concepts are unknown. Coloured number = difference vs Qloo {qlooOn ? "off" : "on"}. * = some concept tags have no evidence.</p>
 
       <div className="mt-4 flex items-center justify-between rounded-lg bg-stone-50 px-3 py-2 text-sm">
         <span>Spend <b>{nt(plan.total_cost)}</b> of {nt(plan.budget)}</span>
