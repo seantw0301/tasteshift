@@ -14,7 +14,7 @@ Source spec: `TasteShift_Competitive_Advantages_Differentiation_v2` (project lib
 | 6 | State | Stateless requests. Decision id = hash of inputs + seed + model version, so a plan is reproducible. |
 | 7 | Memory | In-process trace store and Qloo response cache only. No persistence yet. |
 | 8 | Tools | Qloo Evidence Gateway (mock today). |
-| 9 | Agents | One tool-calling agent (`agent_loop.py`): `list_events`, `find_tags`, `recommend_films`, `rank_films`, `submit_plan`. It outputs fit scores with cited Qloo films; quantities still come from the optimizer. See [agent-evaluation.md](agent-evaluation.md). |
+| 9 | Agents | One tool-calling agent (`agent_loop.py`): `list_events`, `find_tags`, `recommend_films`, `rank_films`, `audience_profile`, `taste_tags`, `submit_plan`. It outputs fit scores with cited Qloo films and signals; quantities still come from the optimizer. See [agent-evaluation.md](agent-evaluation.md). |
 | 10 | Services | `backend` (FastAPI) and `frontend` (Next.js). |
 | 11 | Events | N/A — synchronous request/response. |
 | 12 | Infra | Local dev, plus a public sub-path deployment ([deploy.md](deploy.md)). |

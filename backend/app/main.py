@@ -190,6 +190,8 @@ def agent_compare(req: AgentRequest):
     def arm_view(arm):
         return {"trace": arm["trace"], "reasons": {k: v["reason"] for k, v in arm["scores"].items()},
                 "cited": {k: v["cited"] for k, v in arm["scores"].items()},
-                "evidence_films": arm["evidence_films"], "citations": arm["citations"]}
+                "signals": {k: v.get("signals", []) for k, v in arm["scores"].items()},
+                "evidence_films": arm["evidence_films"], "evidence_signals": arm.get("evidence_signals", []),
+                "citations": arm["citations"]}
     return {"event_id": with_q["event_id"], "with_qloo": arm_view(with_q), "without_qloo": arm_view(without_q),
             "evaluation": evaluation}
