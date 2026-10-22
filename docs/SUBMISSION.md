@@ -84,7 +84,7 @@ Screenshots (captured from the running demo, no credentials visible):
 - [01_culture_comparison.png](screenshots/01_culture_comparison.png): Qloo evidence panel, synthetic culture profile, Qloo On vs Off.
 - [02_plans_what_if.png](screenshots/02_plans_what_if.png): three risk plans and scenarios.
 - [03_live_ops.png](screenshots/03_live_ops.png): mid-event restock and multi-day restock.
-- [04_agent_compare.png](screenshots/04_agent_compare.png): agent with Qloo vs without Qloo, tool calls and cited films.
+- [04_agent_compare.png](screenshots/04_agent_compare.png): agent with Qloo vs without Qloo, tool calls and per-SKU Qloo citations (films, audience age, taste tags).
 
 ## Built during the hackathon
 
