@@ -54,7 +54,7 @@ export default function AgentCompare() {
       <textarea value={text} onChange={(e) => setText(e.target.value)} rows={2}
         className="mt-3 w-full rounded-md border border-stone-300 px-3 py-2 text-sm" />
       <button onClick={run} disabled={busy} className="mt-2 rounded-md bg-stone-900 px-4 py-1.5 text-sm text-white disabled:opacity-50">
-        {busy ? "Agent running…" : "Run both arms"}
+        {busy ? "Agent running… (about 1 minute)" : "Run both arms"}
       </button>
       {err && <p className="mt-3 text-sm text-rose-700">Agent unavailable ({err}).</p>}
       {res && (
