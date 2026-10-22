@@ -1,0 +1,15 @@
+{
+  "culture": { "hold": 5000, "text": "Same merchant, same eight thousand people, same budget. An anime music festival and a family fair need different stock." },
+  "evidence": { "hold": 4500, "text": "For each event, Qloo returns the films that audience loves in Taipei. Live calls." },
+  "onoff": { "hold": 4500, "text": "Every plan is scored against the same simulated demand, so comparisons are fair." },
+  "audit": { "hold": 4000, "text": "Each decision has an audit trail and a purchase order export." },
+  "plans": { "hold": 5000, "text": "Three risk plans, and what-if scenarios such as afternoon rain." },
+  "ops": { "hold": 4500, "text": "During the event, it recommends restocks from simulated sales." },
+  "agent": { "hold": 4500, "text": "Now the agent. The vendor just types a request." },
+  "run": { "hold": 4000, "text": "The same agent runs twice: once with Qloo tools, once without. This takes about a minute." },
+  "tools": { "hold": 6000, "text": "With Qloo, it resolves tags, gets and ranks films, then asks Qloo who the crowd is, and what else they like." },
+  "citations": { "hold": 6000, "text": "Every product decision cites Qloo: films, audience age, and taste tags. The server checks each citation." },
+  "without": { "hold": 4500, "text": "Without Qloo, the same agent can only reason from the event name." },
+  "result": { "hold": 6000, "text": "Across twenty runs, the Qloo agent won seventeen, by five hundred fifty two Taiwan dollars on average, on simulated demand." },
+  "close": { "hold": 4500, "text": "TasteShift. Know your crowd. Choose your products. Stock with confidence." }
+}

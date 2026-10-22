@@ -1,0 +1,10 @@
+{
+  "comment": "Cue sheet for the 30-second opening: start second + spoken text. Each title is the first spoken sentence.",
+  "voice": "af_heart",
+  "speed": 1.0,
+  "cues": [
+    { "at": 0.4,  "text": "You stock your booth before the crowd arrives, and you guess. Eight thousand people, twelve products, one budget. Who is actually coming?" },
+    { "at": 10.4, "text": "Ask Qloo who the crowd is. Let the agent stock for them. Every product decision cites Qloo: films, audience age, and taste." },
+    { "at": 20.5, "text": "Who's coming, what they like, what to stock. Qloo profiles the crowd, the agent decides, the optimizer sets quantities." }
+  ]
+}
