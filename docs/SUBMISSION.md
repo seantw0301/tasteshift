@@ -1,5 +1,8 @@
 # TasteShift: Submission
 
+- **Live demo**: https://demo.jxdtw.com/tasteshift/ (no login)
+- **Code**: https://github.com/seantw0301/tasteshift (MIT)
+
 ## Problem
 
 Event souvenir vendors decide what to stock before a crowd arrives. Two events with the same crowd size and the same budget can have very different buying patterns, so a single standard stock plan misses demand. TasteShift picks products and quantities for each event and shows why.
@@ -12,7 +15,19 @@ Scope: one souvenir merchant, 12 SKUs, two 8,000-person Taipei events.
 |---|---|---|
 | `find_tags` | Resolve each event concept (e.g. `anime`, `family`) to a Qloo tag URN | Live |
 | `recommend` | One call per event, all seed-concept tags plus the event location, returns movies with affinity | Live, shown as evidence |
-| `rank` | Not used. It ranks named entities, not concepts | Not used |
+| `rank` | Agent tool `rank_films`: re-ranks the recommended films for the event location | Live, agent only |
+
+## Agent
+
+The "Agent (Qloo vs none)" tab runs a tool-calling LLM agent on a free-text request (about 1 minute per comparison).
+
+1. `list_events` picks the event that matches the request.
+2. `find_tags` resolves the audience concepts to Qloo tag URNs.
+3. `recommend_films` and `rank_films` fetch the audience's taste signals from Qloo.
+4. `submit_plan` returns a fit score (0–1) and a one-sentence reason for each of the 12 SKUs. Each reason must cite films that Qloo returned; citations are checked server-side.
+5. The deterministic optimizer turns the fit scores into quantities. The LLM never sets quantities or prices.
+
+The same request also runs without Qloo tools, and both plans are scored on the same 40 simulated demand environments. Results over 20 runs: mean +319 NT$ with Qloo, 95% CI (−3, +640), 117 valid citations and 0 invalid. This is not a proven profit gain; see [agent-evaluation.md](agent-evaluation.md).
 
 Why `recommend` is one call per event: affinity values are only comparable within one call. Per-concept calls produce scores that cannot be compared.
 
@@ -38,7 +53,7 @@ Each concept maps to one owner-confirmed URN. The full list with alternatives is
 
 ## Demo
 
-Run the stack (see Setup), then open http://localhost:3000/.
+Open the live demo, or run the stack locally (see Setup) and open http://localhost:3000/.
 
 - **Culture comparison**: Qloo On and Off per event, with decision audit and purchase-order CSV.
 - **Plans & what-if**: three risk plans and scenarios (rain, attendance, cost).
@@ -49,10 +64,15 @@ Screenshots (captured from the running demo, no credentials visible):
 - [01_culture_comparison.png](screenshots/01_culture_comparison.png): Qloo evidence panel, synthetic culture profile, Qloo On vs Off.
 - [02_plans_what_if.png](screenshots/02_plans_what_if.png): three risk plans and scenarios.
 - [03_live_ops.png](screenshots/03_live_ops.png): mid-event restock and multi-day restock.
+- [04_agent_compare.png](screenshots/04_agent_compare.png): agent with Qloo vs without Qloo, tool calls and cited films.
+
+## Built during the hackathon
+
+The project started on 2026-10-10, inside the submission period. All code, the Qloo integration and the agent were written during the period (see the git history).
 
 ## Setup (clean environment)
 
-Verified on a fresh clone of `feat/qloo-evidence`: install, 18 unit tests, smoke test, recommend for all three events, and frontend build all pass.
+Verified on the live deployment on 2026-10-22: fixtures, recommend, agent run and agent compare all return 200.
 
 Requirements: Python 3, Node 22.19 or later, npm.
 
@@ -75,6 +95,7 @@ Requirements: Python 3, Node 22.19 or later, npm.
    ```
 
    Set `QLOO_API_KEY`, `QLOO_BASE_URL=https://hackathon.api.qloo.com` and `QLOO_TRUSTED_BASE_URL=https://hackathon.api.qloo.com`.
+   For the Agent tab, also set `LLM_BASE_URL`, `LLM_MODEL` and `LLM_API_KEY` (any OpenAI-compatible endpoint with function calling). Without them the Agent tab shows "Agent unavailable"; the other tabs still work.
 
 4. Check Qloo connectivity:
 
@@ -97,7 +118,8 @@ Requirements: Python 3, Node 22.19 or later, npm.
 ## Known limitations
 
 - **Culture profile is synthetic.** The stock decisions use hand-written affinity values (`mock:` ids). The "Qloo On vs Off" profit difference therefore reflects the synthetic profile, not Qloo data.
-- **Qloo recommend is evidence only.** It is not connected to pricing or stock.
+- **Qloo recommend is evidence only in the Culture comparison tab.** There it is not connected to pricing or stock. In the Agent tab, Qloo results shape the per-SKU fit and therefore stock.
+- **Agent effect not proven.** The measured profit difference is positive on average but not statistically clear (n = 20, one event).
 - **Simulated demand and prices.** Catalog, prices, reach and conversion are assumptions. Demand is simulated, not measured.
 - **Tag coverage.** SKU concepts such as `tea` and `spicy` now have confirmed URNs, but the decision engine does not use them for Qloo signals yet.
 - **Movie target.** `recommend` targets movies because artist results were mostly CJK names. The output is English only after filtering.

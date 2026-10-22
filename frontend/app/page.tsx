@@ -5,6 +5,7 @@ import AuditPanel from "./AuditPanel";
 import EventColumn from "./EventColumn";
 import OpsTab from "./OpsTab";
 import PlannerTab from "./PlannerTab";
+import AgentCompare from "./AgentCompare";
 import { api, type Ablation, type EventInfo, type EventResult, type MerchantInfo, type Plan } from "./types";
 
 export default function Home() {
@@ -61,7 +62,7 @@ export default function Home() {
           <p className="text-stone-600">Same merchant, same crowd size, same budget. Different culture, different purchase order.</p>
         </div>
         <nav className="flex gap-1 rounded-lg bg-stone-200 p-1 text-sm">
-          {[["compare", "Culture comparison"], ["plan", "Plans & what-if"], ["ops", "Live ops (simulated)"]].map(([k, label]) => (
+          {[["compare", "Culture comparison"], ["plan", "Plans & what-if"], ["ops", "Live ops (simulated)"], ["agent", "Agent (Qloo vs none)"]].map(([k, label]) => (
             <button key={k} onClick={() => setTab(k)}
               className={`rounded-md px-3 py-1.5 ${tab === k ? "bg-white font-medium shadow-sm" : "text-stone-600"}`}>{label}</button>
           ))}
@@ -100,6 +101,7 @@ export default function Home() {
       </>)}
       {tab === "plan" && merchants.length > 0 && <PlannerTab merchants={merchants} events={events} onAudit={(id) => api(`/api/decisions/${id}/audit`).then(setTrace)} />}
       {tab === "ops" && merchants.length > 0 && <OpsTab merchants={merchants} events={events} />}
+      {tab === "agent" && <AgentCompare />}
       {trace && <AuditPanel trace={trace} onClose={() => setTrace(null)} />}
     </main>
   );

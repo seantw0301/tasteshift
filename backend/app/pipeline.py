@@ -66,13 +66,15 @@ def _ingredients(merchant: Merchant, qty: Dict[str, int]) -> List[IngredientNeed
 
 
 def build_demand(req: PlanRequest, aff_override: Optional[Dict[str, Optional[float]]] = None,
-                 beta: Optional[float] = None, seed: Optional[int] = None):
+                 beta: Optional[float] = None, seed: Optional[int] = None, planner_aff: Optional[dict] = None):
     """Shared demand construction for planning and for hidden-environment evaluation."""
     merchant, event = load_merchant(req.merchant_id), get_event(req.event_id)
     skus, att_mult, sku_mult, notes = _apply_scenario(merchant, req.scenario)
     attendance = req.attendance or event.attendance
     dna = qloo_gateway.event_dna(event)
     aff_full = {s.id: engine.sku_affinity(s, dna) for s in skus}
+    if planner_aff is not None:
+        aff_full = {s.id: planner_aff.get(s.id, (None, "unknown", [])) for s in skus}
     aff = aff_override if aff_override is not None else {
         k: (v[0] if req.qloo_on else None) for k, v in aff_full.items()}
     if req.weight_overrides:
@@ -90,8 +92,8 @@ def build_demand(req: PlanRequest, aff_override: Optional[Dict[str, Optional[flo
     return merchant, event, skus, attendance, dna, aff_full, demand, notes, cap_note
 
 
-def make_plan(req: PlanRequest) -> Plan:
-    merchant, event, skus, attendance, dna, aff_full, demand, notes, cap_note = build_demand(req)
+def make_plan(req: PlanRequest, planner_aff: Optional[dict] = None) -> Plan:
+    merchant, event, skus, attendance, dna, aff_full, demand, notes, cap_note = build_demand(req, planner_aff=planner_aff)
     budget = req.budget if req.budget is not None else merchant.budget
     qmode, fallback = qloo_gateway.mode()
     blocked = _blocked(merchant)
@@ -115,7 +117,7 @@ def make_plan(req: PlanRequest) -> Plan:
 
     sc = req.scenario.model_dump() if req.scenario else None
     key = json.dumps([event.id, merchant.id, attendance, budget, req.qloo_on, req.seed, req.risk, sc,
-                      sorted(req.weight_overrides.items()), engine.MODEL_VERSION, qmode])
+                      sorted(req.weight_overrides.items()), engine.MODEL_VERSION, qmode, planner_aff is not None])
     decision_id = "dec_" + hashlib.sha256(key.encode()).hexdigest()[:12]
     plan = Plan(
         decision_id=decision_id, event_id=event.id, merchant_id=merchant.id, risk=req.risk,
@@ -224,3 +226,26 @@ def replan(req: PlanRequest) -> dict:
                             "demand_p50_before": b.demand_p50, "demand_p50_after": a.demand_p50})
     return {"before": before, "after": after, "changes": changes, "why": after.scenario_notes,
             "profit_change": round(after.expected_profit - before.expected_profit, 0)}
+
+
+def agent_ablation(req: PlanRequest, planner_grounded: dict, planner_ungrounded: dict) -> dict:
+    """Two agent arms (Qloo-grounded vs no evidence) scored against the same hidden environments."""
+    base = req.model_copy(update={"qloo_on": True})
+    arms = {"grounded": planner_grounded, "ungrounded": planner_ungrounded}
+    plans = {k: make_plan(base, planner_aff=v) for k, v in arms.items()}
+    skus = load_merchant(req.merchant_id).skus
+    stock = {k: {r.sku_id: r.stock_qty for r in p.skus} for k, p in plans.items()}
+    runs = {k: [] for k in arms}
+    for i in range(engine.N_ENVIRONMENTS):
+        hidden = hidden_demand(base, i)
+        for k in arms:
+            runs[k].append(engine.evaluate(skus, stock[k], hidden))
+    diffs = [a["expected_profit"] - b["expected_profit"] for a, b in zip(runs["grounded"], runs["ungrounded"])]
+    mean = {k: {m: round(float(np.mean([r[m] for r in runs[k]])), 3) for m in runs[k][0]} for k in arms}
+    return {
+        "event_id": req.event_id, "seed": req.seed, "grounded": mean["grounded"], "ungrounded": mean["ungrounded"],
+        "stock": stock, "delta_profit": round(mean["grounded"]["expected_profit"] - mean["ungrounded"]["expected_profit"], 2),
+        "grounded_win_rate": round(float(np.mean([d > 0 for d in diffs])), 2),
+        "changed_skus": [s.id for s in skus if stock["grounded"][s.id] != stock["ungrounded"][s.id]],
+        "n_environments": engine.N_ENVIRONMENTS, "environment": "synthetic",
+    }

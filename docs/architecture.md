@@ -8,16 +8,16 @@ Source spec: `TasteShift_Competitive_Advantages_Differentiation_v2` (project lib
 |---|---|---|
 | 1 | Business | Event vendors decide what to sell and how much. KPI: profit, stockout, leftover vs a no-culture baseline. MVP: Qloo hackathon demo (due 2026-10-30 23:45 EDT). |
 | 2 | Product | Three tabs: culture comparison (Qloo On/Off, audit), plans & what-if (three risk plans, scenarios, BOM, capacity), live ops (simulated restock, calibration, multi-day). |
-| 3 | AI strategy | Qloo supplies cultural affinity only. Demand, cost and optimization are deterministic code. No LLM in P0. |
+| 3 | AI strategy | Qloo supplies cultural evidence. An LLM agent turns a free-text request plus Qloo results into per-SKU fit scores. Demand, cost and optimization are deterministic code. |
 | 4 | Workflow | fixtures → event DNA → SKU affinity → demand scenarios → optimizer → plan → trace; ablation re-scores On and Off plans. |
 | 5 | Data flow | Every input carries an origin tag (`qloo_live`, `merchant_input`, `synthetic`, `model_estimate`, …). Missing = `unknown`, never 0. No personal data. |
 | 6 | State | Stateless requests. Decision id = hash of inputs + seed + model version, so a plan is reproducible. |
 | 7 | Memory | In-process trace store and Qloo response cache only. No persistence yet. |
 | 8 | Tools | Qloo Evidence Gateway (mock today). |
-| 9 | Agents | N/A in P0 — the spec's four agents arrive with the LLM layer; numbers never come from an LLM. |
+| 9 | Agents | One tool-calling agent (`agent_loop.py`): `list_events`, `find_tags`, `recommend_films`, `rank_films`, `submit_plan`. It outputs fit scores with cited Qloo films; quantities still come from the optimizer. See [agent-evaluation.md](agent-evaluation.md). |
 | 10 | Services | `backend` (FastAPI) and `frontend` (Next.js). |
 | 11 | Events | N/A — synchronous request/response. |
-| 12 | Infra | Local dev only. Public deployment not chosen yet. |
+| 12 | Infra | Local dev, plus a public sub-path deployment ([deploy.md](deploy.md)). |
 
 ## API
 
