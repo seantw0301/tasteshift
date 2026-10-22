@@ -116,4 +116,45 @@ def test_citations_are_checked_against_recommended_films(monkeypatch):
     ]))
     out = agent_loop.run_agent("anime", qloo=True)
     assert out["scores"][skus[0].id]["cited"] == ["Kingdom"]
-    assert out["citations"] == {"valid": 1, "invalid": 1, "skus_with_valid_citation": 1}
+    assert {k: out["citations"][k] for k in ("valid", "invalid", "skus_with_valid_citation")} == \
+        {"valid": 1, "invalid": 1, "skus_with_valid_citation": 1}
+
+
+def test_audience_and_taste_signals_are_cited_and_checked(monkeypatch):
+    stub_qloo(monkeypatch)
+    monkeypatch.setattr(qloo_gateway, "audience_profile", lambda ids: {
+        "status": "ok", "entities_used": ids, "age": {"35_to_44": 0.7}, "gender": {"male": 0.3}})
+    monkeypatch.setattr(qloo_gateway, "taste_tags", lambda ids: {
+        "status": "ok", "tags": [{"name": "Afternoon Tea Set", "kind": "specialty_dish", "affinity": 1}]})
+    skus = load_merchant().skus
+    scores = [{"sku_id": skus[0].id, "fit": 0.8, "reason": "r", "cited_films": [],
+               "cited_signals": ["age:35_to_44", "Afternoon Tea Set", "Made Up Tag"]}]
+    scores += [{"sku_id": s.id, "fit": 0.5, "reason": "r"} for s in skus[1:]]
+    monkeypatch.setattr(llm, "chat_tools", scripted([
+        {"content": None, "tool_calls": [tool_call(1, "recommend_films", {"event_id": "evt_anime_music"})]},
+        {"content": None, "tool_calls": [tool_call(2, "audience_profile", {"event_id": "evt_anime_music", "entity_ids": ["E1", "BAD"]})]},
+        {"content": None, "tool_calls": [tool_call(3, "taste_tags", {"event_id": "evt_anime_music", "entity_ids": ["E1"]})]},
+        {"content": None, "tool_calls": [tool_call(4, "submit_plan", {"event_id": "evt_anime_music", "scores": scores})]},
+    ]))
+    out = agent_loop.run_agent("anime festival", qloo=True)
+    assert out["scores"][skus[0].id]["signals"] == ["age:35_to_44", "Afternoon Tea Set"]
+    assert out["citations"]["signals_valid"] == 2 and out["citations"]["signals_invalid"] == 1
+    assert out["citations"]["skus_with_any_qloo_citation"] == 1
+    assert "gender:male" in out["evidence_signals"]
+
+
+def test_signal_tools_reject_films_not_from_recommend(monkeypatch):
+    stub_qloo(monkeypatch)
+    called = []
+    monkeypatch.setattr(qloo_gateway, "audience_profile", lambda ids: called.append(ids) or {"status": "ok"})
+    out = agent_loop._run_tool("audience_profile", {"event_id": "evt_anime_music", "entity_ids": ["X"]}, True, {})
+    assert "error" in out and called == []
+
+
+def test_audience_profile_averages_over_films(monkeypatch):
+    rows = {"A": {"age": {"25_to_29": 0.2}, "gender": {"male": 0.4}}, "B": {"age": {"25_to_29": 0.6}, "gender": {"male": 0.0}}}
+    monkeypatch.setattr(qloo_gateway, "run_workflow", lambda wf, p, timeout=30: {
+        "status": "ok", "results": [{"entity_id": p["entity"], "query": rows[p["entity"]]}]})
+    qloo_gateway._WF_CACHE.clear()
+    out = qloo_gateway.audience_profile(["A", "B"])
+    assert out["age"] == {"25_to_29": 0.4} and out["gender"] == {"male": 0.2} and out["entities_used"] == ["A", "B"]

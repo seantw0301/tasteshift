@@ -3,7 +3,11 @@
 import { useState } from "react";
 import { api } from "./types";
 
-type Arm = { trace: { tool?: string; note?: string; result?: string }[]; reasons: Record<string, string>; evidence_films: string[] };
+type Arm = {
+  trace: { tool?: string; note?: string; result?: string }[]; reasons: Record<string, string>; evidence_films: string[];
+  cited?: Record<string, string[]>; signals?: Record<string, string[]>;
+  citations?: { skus_with_any_qloo_citation?: number };
+};
 type Compare = {
   event_id: string;
   with_qloo: Arm;
@@ -23,10 +27,18 @@ function ArmView({ title, arm }: { title: string; arm: Arm }) {
       <div className="text-xs font-medium uppercase tracking-wide text-stone-500">{title}</div>
       <p className="mt-2 text-xs text-stone-500">Tool calls: {tools.join(" → ") || "none"}</p>
       <p className="mt-1 text-xs text-stone-500">Qloo films used: {arm.evidence_films.join(", ") || "none"}</p>
+      {arm.citations?.skus_with_any_qloo_citation !== undefined && (
+        <p className="mt-1 text-xs text-stone-500">SKUs backed by a Qloo citation: {arm.citations.skus_with_any_qloo_citation} of {Object.keys(arm.reasons).length}</p>
+      )}
       <ul className="mt-2 space-y-1 text-xs">
-        {Object.entries(arm.reasons).map(([sku, r]) => (
-          <li key={sku}><b>{sku}</b>: {r}</li>
-        ))}
+        {Object.entries(arm.reasons).map(([sku, r]) => {
+          const cites = [...(arm.cited?.[sku] ?? []), ...(arm.signals?.[sku] ?? [])];
+          return (
+            <li key={sku}><b>{sku}</b>: {r}
+              {cites.length > 0 && <span className="ml-1 text-teal-700">[Qloo: {cites.join("; ")}]</span>}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

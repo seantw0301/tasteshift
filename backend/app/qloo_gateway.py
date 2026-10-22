@@ -100,6 +100,52 @@ def recommend(event: Event) -> dict:
     return env
 
 
+_WF_CACHE: Dict[str, dict] = {}
+
+
+def cached_workflow(workflow: str, payload: dict) -> dict:
+    """run_workflow with a process-lifetime cache for ok results (same input, same Qloo answer)."""
+    key = workflow + json.dumps(payload, sort_keys=True)
+    if key in _WF_CACHE:
+        return _WF_CACHE[key]
+    env = run_workflow(workflow, payload)
+    if env.get("status") == "ok":
+        _WF_CACHE[key] = env
+    return env
+
+
+def audience_profile(entity_ids: List[str]) -> dict:
+    """Mean age and gender skew of the audiences of the given movies (one audience_demographics call each)."""
+    age: Dict[str, List[float]] = {}
+    gender: Dict[str, List[float]] = {}
+    used = []
+    for eid in entity_ids:
+        env = cached_workflow("audience_demographics", {"entity": eid, "entity_type": "movie"})
+        rows = (env.get("results") or []) if env.get("status") == "ok" else []
+        q = rows[0].get("query", {}) if rows else {}
+        if not q:
+            continue
+        used.append(eid)
+        for k, v in (q.get("age") or {}).items():
+            age.setdefault(k, []).append(float(v))
+        for k, v in (q.get("gender") or {}).items():
+            gender.setdefault(k, []).append(float(v))
+    mean = lambda d: {k: round(sum(v) / len(v), 2) for k, v in d.items()}
+    return {"status": "ok" if used else "no_data", "entities_used": used, "age": mean(age), "gender": mean(gender)}
+
+
+def taste_tags(entity_ids: List[str], limit: int = 15) -> dict:
+    """Cross-domain Qloo tags (dining, brands, styles) shared by the audiences of the given movies."""
+    env = cached_workflow("entity_tags", {"entities": entity_ids, "entity_type": "movie", "limit": limit})
+    if env.get("status") != "ok":
+        return {"status": env.get("status"), "tags": []}
+    tags = []
+    for r in env.get("results") or []:
+        parts = r.get("type", "").split(":")  # e.g. urn:tag:specialty_dish:place -> specialty_dish
+        tags.append({"name": r["name"], "kind": parts[2] if len(parts) > 2 else "", "affinity": r.get("affinity")})
+    return {"status": "ok", "tags": tags}
+
+
 def mode() -> Tuple[str, Optional[str]]:
     if harness_installed():
         return "mock", "Qloo harness found. Recommend is shown as evidence; the culture profile that drives stock is synthetic"
