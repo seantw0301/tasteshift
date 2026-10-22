@@ -16,6 +16,25 @@ Scope: one souvenir merchant, 12 SKUs, two 8,000-person Taipei events.
 | `find_tags` | Resolve each event concept (e.g. `anime`, `family`) to a Qloo tag URN | Live |
 | `recommend` | One call per event, all seed-concept tags plus the event location, returns movies with affinity | Live, shown as evidence |
 | `rank` | Agent tool `rank_films`: re-ranks the recommended films for the event location | Live, agent only |
+| `audience_demographics` | Agent tool `audience_profile`: age bands and gender skew of the audiences of the top films | Live, agent only |
+| `entity_tags` | Agent tool `taste_tags`: cross-domain tastes (food, brands, styles) of those audiences | Live, agent only |
+
+## Why the agent needs Qloo
+
+A vendor's question is "who is coming, and what else do they like?". An LLM alone answers from stereotypes. Qloo answers from observed taste data for this audience in this city.
+
+What Qloo returned for the three Taipei events (top 3 recommended films per event, live calls on 2026-10-22; positive = over-indexed):
+
+| Event | Age skew from `audience_demographics` | Cross-domain tastes from `entity_tags` |
+|---|---|---|
+| Anime music festival | 35–44 +0.60; 24 and younger −0.19 | Cafe, Afternoon Tea Set, Fashion |
+| Family weekend fair | 25–29 +0.20, 55 and older +0.22; 35–44 −0.37 | Cafe, Picanha Steak, Family Business |
+| Lunar new year market | 24 and younger +0.22; female +0.30 | Salad, Health & Beauty, Group Outings, Tourist attraction |
+
+- **It replaces guesses with data.** Without Qloo the agent has no audience data and reasons from the event name. With Qloo it sees that the Taipei audience for these films under-indexes at 24 and younger and over-indexes at 35–44, and cites that in its reasons (for example: kids' sticker books fit poorly because "the audience under-indexes for ages 24 and younger").
+- **It is cross-domain.** Souvenir SKUs (tea, tote bags, tees) are not films. `entity_tags` links the film audience to food, brand and style tastes, which the agent maps to SKUs.
+- **It is checkable.** Every cited film and signal must appear in what Qloo returned; the server drops anything else and counts it as invalid.
+- **Without it, the tools disappear.** The no-Qloo arm has only `list_events` and `submit_plan`. Same model, same prompt shape, no audience data.
 
 ## Agent
 
@@ -23,11 +42,12 @@ The "Agent (Qloo vs none)" tab runs a tool-calling LLM agent on a free-text requ
 
 1. `list_events` picks the event that matches the request.
 2. `find_tags` resolves the audience concepts to Qloo tag URNs.
-3. `recommend_films` and `rank_films` fetch the audience's taste signals from Qloo.
-4. `submit_plan` returns a fit score (0–1) and a one-sentence reason for each of the 12 SKUs. Each reason must cite films that Qloo returned; citations are checked server-side.
-5. The deterministic optimizer turns the fit scores into quantities. The LLM never sets quantities or prices.
+3. `recommend_films` and `rank_films` fetch the films this audience likes in the event city.
+4. `audience_profile` and `taste_tags` describe who that audience is (age, gender) and what else it likes (food, brands, styles).
+5. `submit_plan` returns a fit score (0–1) and a one-sentence reason for each of the 12 SKUs, with the Qloo films and signals that support it. Citations are checked server-side.
+6. The deterministic optimizer turns the fit scores into quantities. The LLM never sets quantities or prices.
 
-The same request also runs without Qloo tools, and both plans are scored on the same 40 simulated demand environments. Results over 20 runs: mean +319 NT$ with Qloo, 95% CI (−3, +640), 117 valid citations and 0 invalid. This is not a proven profit gain; see [agent-evaluation.md](agent-evaluation.md).
+The same request also runs without Qloo tools, and both plans are scored on the same 40 simulated demand environments. Results over 20 runs: with Qloo wins 17 of 20 runs, mean +552 NT$, 95% CI (+311, +793); 92% of SKU decisions cite verified Qloo data, 0 invalid citations. Demand is simulated, so this is not a measured sales gain; see [agent-evaluation.md](agent-evaluation.md).
 
 Why `recommend` is one call per event: affinity values are only comparable within one call. Per-concept calls produce scores that cannot be compared.
 
@@ -119,7 +139,7 @@ Requirements: Python 3, Node 22.19 or later, npm.
 
 - **Culture profile is synthetic.** The stock decisions use hand-written affinity values (`mock:` ids). The "Qloo On vs Off" profit difference therefore reflects the synthetic profile, not Qloo data.
 - **Qloo recommend is evidence only in the Culture comparison tab.** There it is not connected to pricing or stock. In the Agent tab, Qloo results shape the per-SKU fit and therefore stock.
-- **Agent effect not proven.** The measured profit difference is positive on average but not statistically clear (n = 20, one event).
+- **Agent effect measured on simulated demand only.** The profit gain (n = 20, one event, one model) is against synthetic hidden demand, not real sales.
 - **Simulated demand and prices.** Catalog, prices, reach and conversion are assumptions. Demand is simulated, not measured.
 - **Tag coverage.** SKU concepts such as `tea` and `spicy` now have confirmed URNs, but the decision engine does not use them for Qloo signals yet.
 - **Movie target.** `recommend` targets movies because artist results were mostly CJK names. The output is English only after filtering.

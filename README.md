@@ -7,7 +7,7 @@ Given an event, a vendor, a catalog and constraints, it picks products and quant
 - **Culture comparison**: one souvenir merchant, 12 SKUs, two 8,000-person events; Qloo On vs Off; decision audit
 - **Plans & what-if**: three risk plans, rain/attendance/cost scenarios, juice recipes, sausage grill capacity
 - **Live ops (simulated)**: restock from sales, calibration, multi-day new-year restock
-- **Agent (Qloo vs none)**: tool-calling LLM agent that cites Qloo films per SKU, compared with the same agent without Qloo
+- **Agent (Qloo vs none)**: tool-calling LLM agent that cites Qloo films, audience demographics and taste tags per SKU, compared with the same agent without Qloo
 
 Live demo: https://demo.jxdtw.com/tasteshift/
 
